@@ -22,3 +22,18 @@
         display: none;
     }
 }
+
+.home {
+    margin: 10px;
+    display: flex;
+    justify-content: start;
+}
+
+.home a i {
+    font-size: 45px;
+}
+
+.home .enlace {
+    text-decoration: none;
+    margin: 15px 10px 5px 10px;
+}

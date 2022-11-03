@@ -8,11 +8,11 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet("/productos/view-products")
+@WebServlet("/productos")
 public class ProductServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendRedirect(req.getContextPath() + "/productos");
+        getServletContext().getRequestDispatcher("/products.jsp").forward(req, resp);
     }
 }
