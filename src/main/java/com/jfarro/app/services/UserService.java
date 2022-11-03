@@ -1,15 +1,15 @@
 package com.jfarro.app.services;
 
-import com.jfarro.app.models.Product;
+import com.jfarro.app.models.User;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface UserService {
-    List<Product> findAllUsers();
-    List<Product> findAllWhereUsers(String filter, String data);
-    Optional<Product> findByIdUser(Long id);
-    Optional<Product> findByUsername(String username);
-    void saveUser(Product product);
+    List<User> findAllUsers();
+    List<User> findAllWhereUsers(String filter, String data);
+    Optional<User> findByIdUser(Long id);
+    Optional<User> findByUsername(String username);
+    void saveUser(User product);
     void deleteUser(Long id);
 }

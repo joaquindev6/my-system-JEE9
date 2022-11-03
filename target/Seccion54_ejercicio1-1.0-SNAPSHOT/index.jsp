@@ -24,7 +24,7 @@
                             Productos
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="<%=request.getContextPath()%>/productos/view-products">Lista de Productos</a></li>
+                            <li><a class="dropdown-item" href="<%=request.getContextPath()%>/productos">Lista de Productos</a></li>
                             <li><a class="dropdown-item" href="<%=request.getContextPath()%>/productos/formulario/view-form">Registro de Productos</a>
                             </li>
                             <li>
@@ -38,7 +38,7 @@
                             Usuarios
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="<%=request.getContextPath()%>/usuarios/view-users">Lista de Usuarios</a></li>
+                            <li><a class="dropdown-item" href="<%=request.getContextPath()%>/usuarios">Lista de Usuarios</a></li>
                             <li><a class="dropdown-item" href="<%=request.getContextPath()%>/usuarios/formulario/view-form">Registro de Usuarios</a></li>
                         </ul>
                     </li>

@@ -1,14 +1,18 @@
 package com.jfarro.app.annotations;
 
-import jakarta.inject.Qualifier;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.inject.Stereotype;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Qualifier
+@ApplicationScoped
+@TransactionalMysql
+@Stereotype
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.METHOD, ElementType.PARAMETER, ElementType.FIELD, ElementType.TYPE})
-public @interface ConnectionMySQL {
+@Target(ElementType.TYPE)
+public @interface ServiceMysql {
+
 }

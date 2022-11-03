@@ -1,4 +1,5 @@
 com\jfarro\app\services\UserService.class
+com\jfarro\app\annotations\ServiceMysql.class
 com\jfarro\app\controllers\FormUserServlet.class
 com\jfarro\app\annotations\TransactionalMysql.class
 com\jfarro\app\models\Product.class
@@ -6,7 +7,6 @@ com\jfarro\app\controllers\views\FormProductServletView.class
 com\jfarro\app\models\User.class
 com\jfarro\app\controllers\views\LoginRequestView.class
 com\jfarro\app\controllers\FormProductServlet.class
-com\jfarro\app\controllers\views\UserServletView.class
 com\jfarro\app\models\ShoppingCar.class
 com\jfarro\app\interceptors\TransactionalMysqlInterceptor.class
 com\jfarro\app\controllers\views\FormUserServletView.class
@@ -25,6 +25,7 @@ com\jfarro\app\producers\ConnectionMysqlProducer.class
 com\jfarro\app\repositorys\impl\UserRepositoryImpl.class
 com\jfarro\app\controllers\UserServlet.class
 com\jfarro\app\controllers\ProductServlet.class
+com\jfarro\app\services\impl\UserServiceImpl.class
 com\jfarro\app\controllers\IndexServlet.class
 com\jfarro\app\exceptions\ServiceJdbcException.class
 com\jfarro\app\repositorys\CrudRepository.class

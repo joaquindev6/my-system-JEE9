@@ -9,7 +9,6 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @ApplicationScoped
-@TransactionalMysql
 @Stereotype
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)

@@ -1,4 +1,9 @@
+<%@ page import="java.util.List" %>
+<%@ page import="com.jfarro.app.models.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    List<User> users = (List<User>) request.getAttribute("users");
+%>
 <html>
 <head>
     <meta charset="UTF-8"/>
@@ -24,7 +29,7 @@
                             Productos
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="<%=request.getContextPath()%>/productos/view-products">Lista de Productos</a></li>
+                            <li><a class="dropdown-item" href="<%=request.getContextPath()%>/productos">Lista de Productos</a></li>
                             <li><a class="dropdown-item" href="<%=request.getContextPath()%>/productos/formulario/view-form">Registro de Productos</a>
                             </li>
                             <li>
@@ -38,7 +43,7 @@
                             Usuarios
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="<%=request.getContextPath()%>/usuarios/view-users">Lista de Usuarios</a></li>
+                            <li><a class="dropdown-item" href="<%=request.getContextPath()%>/usuarios">Lista de Usuarios</a></li>
                             <li><a class="dropdown-item" href="<%=request.getContextPath()%>/usuarios/formulario/view-form">Registro de Usuarios</a></li>
                         </ul>
                     </li>
@@ -84,7 +89,7 @@
                             <th>Apellidos</th>
                             <th>Edad</th>
                             <th>Sexo</th>
-                            <th>Ciudad</th>
+                            <th>País</th>
                             <th>Rol</th>
                             <th>Usuario</th>
                             <th>Contraseña</th>
@@ -94,16 +99,17 @@
                         </thead>
                         <tbody>
                         <form action="">
+                            <% for (User user: users) { %>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td><%= user.getId() %></td>
+                                <td><%= user.getNames() %></td>
+                                <td><%= user.getLastNames() %></td>
+                                <td><%= user.getAge() %></td>
+                                <td><%= user.getSex() %></td>
+                                <td><%= user.getCountry() %></td>
+                                <td><%= user.getRole() %></td>
+                                <td><%= user.getUsername() %></td>
+                                <td><%= user.getPassword() %></td>
                                 <td>
                                     <div class="d-flex">
                                         <div class="mx-auto">
@@ -117,6 +123,7 @@
                                     </div>
                                 </td>
                             </tr>
+                            <% } %>
                         </form>
                         </tbody>
                     </table>

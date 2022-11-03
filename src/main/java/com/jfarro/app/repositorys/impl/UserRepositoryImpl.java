@@ -23,7 +23,9 @@ public class UserRepositoryImpl implements UserRepository {
         List<User> users = new ArrayList<>();
         try (Statement stm = this.conn.createStatement()) {
             try (ResultSet rs = stm.executeQuery("SELECT * FROM users")) {
-                users.add(getUser(rs));
+                while (rs.next()) {
+                    users.add(getUser(rs));
+                }
             }
         }
         return users;
