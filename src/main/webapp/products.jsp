@@ -4,6 +4,7 @@
     <meta charset="UTF-8"/>
     <title>Productos</title>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css"/>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/bootstrap/css/style.css"/>
 </head>
 <body>
@@ -24,8 +25,11 @@
                         Productos
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="<%=request.getContextPath()%>/productos">Lista de Productos</a></li>
-                        <li><a class="dropdown-item" href="<%=request.getContextPath()%>/productos/formulario/view-form">Registro de Productos</a>
+                        <li><a class="dropdown-item" href="<%=request.getContextPath()%>/productos/data-show">Lista de
+                            Productos</a></li>
+                        <li><a class="dropdown-item"
+                               href="<%=request.getContextPath()%>/productos/formulario/save">Registro de
+                            Productos</a>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
@@ -38,8 +42,10 @@
                         Usuarios
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="<%=request.getContextPath()%>/usuarios">Lista de Usuarios</a></li>
-                        <li><a class="dropdown-item" href="<%=request.getContextPath()%>/usuarios/formulario/view-form">Registro de Usuarios</a></li>
+                        <li><a class="dropdown-item" href="<%=request.getContextPath()%>/usuarios/data-show">Lista de Usuarios</a>
+                        </li>
+                        <li><a class="dropdown-item" href="<%=request.getContextPath()%>/usuarios/formulario/save">Registro
+                            de Usuarios</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -47,7 +53,8 @@
                         Login
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="<%=request.getContextPath()%>/sesion/login">Iniciar Sesión</a></li>
+                        <li><a class="dropdown-item" href="<%=request.getContextPath()%>/sesion/login">Iniciar
+                            Sesión</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -64,19 +71,8 @@
                 <h4>Lista de Productos</h4>
             </div>
             <div class="card-body m-3">
-                <div class="row">
-                    <form action="">
-                        <div class="col-6">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Buscar por nombre">
-                                <button class="btn btn-outline-secondary" type="submit">Buscar</button>
-                                <button class="btn btn-outline-secondary" type="submit">Limpiar</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
                 <div class="row overflow-hidden">
-                    <table class="table table-hover">
+                    <table id="mytable" class="table table-hover">
                         <thead>
                         <tr class="text-center">
                             <th>Id</th>
@@ -115,7 +111,7 @@
                 </div>
                 <div class="row justify-content-end">
                     <div class="col-12 overflow-hidden">
-                        <form action="" class="mb-0">
+                        <form action="" class="mb-0 mt-2">
                             <div class="d-flex justify-content-end">
                                 <a class="btn btn-primary me-2" href="<%=request.getContextPath()%>/productos/formulario/view-form">Nuevo Producto</a>
                                 <input type="submit" class="btn btn-danger ms-1" value="Eliminar"/>
@@ -127,5 +123,12 @@
         </div>
     </div>
     <script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready( function () {
+            $('#mytable').DataTable();
+        } );
+    </script>
 </body>
 </html>

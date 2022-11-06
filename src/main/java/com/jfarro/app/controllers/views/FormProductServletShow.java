@@ -8,11 +8,11 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet("/sesion")
-public class LoginRequestView extends HttpServlet {
+@WebServlet("/productos/formulario")
+public class FormProductServletShow extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/login.jsp").forward(req, resp);
+        getServletContext().getRequestDispatcher("/form-product.jsp").forward(req, resp);
     }
 }

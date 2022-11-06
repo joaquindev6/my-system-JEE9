@@ -37,7 +37,9 @@ public class UserRepositoryImpl implements UserRepository {
         try (PreparedStatement pstm = this.conn.prepareStatement("SELECT * FROM users WHERE id = ?")) {
             pstm.setLong(1, id);
             try (ResultSet rs = pstm.executeQuery()) {
-                user = getUser(rs);
+                if (rs.next()) {
+                    user = getUser(rs);
+                }
             }
         }
         return user;

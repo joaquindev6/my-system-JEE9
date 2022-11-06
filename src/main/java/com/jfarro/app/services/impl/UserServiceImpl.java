@@ -15,12 +15,12 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
 
     @Inject
-    private UserRepository repository;
+    private UserRepository userRepository;
 
     @Override
     public List<User> findAllUsers() {
         try {
-            return this.repository.findAll();
+            return this.userRepository.findAll();
         } catch (SQLException e) {
             throw new ServiceJdbcException(e.getMessage(), e.getCause());
         }
@@ -28,26 +28,46 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> findAllWhereUsers(String filter, String data) {
-        return null;
+        try {
+            return this.userRepository.findAllWhere(filter, data);
+        } catch (SQLException e) {
+            throw new ServiceJdbcException(e.getMessage(), e.getCause());
+        }
     }
 
     @Override
-    public Optional<User> findByIdUser(Long id) {
-        return Optional.empty();
+    public User findByIdUser(Long id) {
+        try {
+            return this.userRepository.findById(id);
+        } catch (SQLException e) {
+            throw new ServiceJdbcException(e.getMessage(), e.getCause());
+        }
     }
 
     @Override
     public Optional<User> findByUsername(String username) {
-        return Optional.empty();
+        try {
+            return this.userRepository.findByUsername(username);
+        } catch (SQLException e) {
+            throw new ServiceJdbcException(e.getMessage(), e.getCause());
+        }
     }
 
     @Override
     public void saveUser(User product) {
-
+        try {
+            this.userRepository.save(product);
+        } catch (SQLException e) {
+            throw new ServiceJdbcException(e.getMessage(), e.getCause());
+        }
     }
 
     @Override
     public void deleteUser(Long id) {
-
+        try {
+            this.userRepository.delete(id);
+        } catch (SQLException e) {
+            throw new ServiceJdbcException(e.getMessage(), e.getCause());
+        }
     }
 }

@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface UserService {
     List<User> findAllUsers();
     List<User> findAllWhereUsers(String filter, String data);
-    Optional<User> findByIdUser(Long id);
+    User findByIdUser(Long id);
     Optional<User> findByUsername(String username);
     void saveUser(User product);
     void deleteUser(Long id);

@@ -24,8 +24,11 @@
                         Productos
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="<%=request.getContextPath()%>/productos">Lista de Productos</a></li>
-                        <li><a class="dropdown-item" href="<%=request.getContextPath()%>/productos/formulario/view-form">Registro de Productos</a>
+                        <li><a class="dropdown-item" href="<%=request.getContextPath()%>/productos/data-show">Lista de
+                            Productos</a></li>
+                        <li><a class="dropdown-item"
+                               href="<%=request.getContextPath()%>/productos/formulario/save">Registro de
+                            Productos</a>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
@@ -38,8 +41,10 @@
                         Usuarios
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="<%=request.getContextPath()%>/usuarios">Lista de Usuarios</a></li>
-                        <li><a class="dropdown-item" href="<%=request.getContextPath()%>/usuarios/formulario/view-form">Registro de Usuarios</a></li>
+                        <li><a class="dropdown-item" href="<%=request.getContextPath()%>/usuarios/data-show">Lista de Usuarios</a>
+                        </li>
+                        <li><a class="dropdown-item" href="<%=request.getContextPath()%>/usuarios/formulario/save">Registro
+                            de Usuarios</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -47,7 +52,8 @@
                         Login
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="<%=request.getContextPath()%>/sesion/login">Iniciar Sesión</a></li>
+                        <li><a class="dropdown-item" href="<%=request.getContextPath()%>/sesion/login">Iniciar
+                            Sesión</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -64,7 +70,7 @@
                 <a href="<%=request.getContextPath()%>/productos">
                     <i class="fa-solid fa-warehouse"></i>
                 </a>
-                <a class="enlace" href="<%=request.getContextPath()%>/productos">Volver a productos</a>
+                <a class="enlace" href="<%=request.getContextPath()%>/productos/data-show">Volver a productos</a>
             </div>
         </div>
         <div class="row justify-content-center"> <!-- para centrar en la pantalla d-flex justify-content-center align-items-center vh-100  -->

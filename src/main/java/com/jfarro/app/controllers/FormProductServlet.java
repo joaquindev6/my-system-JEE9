@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet("/productos/formulario/view-form")
+@WebServlet("/productos/formulario/save")
 public class FormProductServlet extends HttpServlet {
 
     @Override

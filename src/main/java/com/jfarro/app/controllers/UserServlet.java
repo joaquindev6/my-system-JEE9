@@ -1,6 +1,5 @@
 package com.jfarro.app.controllers;
 
-import com.jfarro.app.models.User;
 import com.jfarro.app.services.UserService;
 import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
@@ -10,9 +9,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.Arrays;
 
-@WebServlet("/usuarios")
+@WebServlet("/usuarios/data-show")
 public class UserServlet extends HttpServlet {
 
     @Inject
@@ -20,8 +19,19 @@ public class UserServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<User> users = this.userService.findAllUsers();
-        req.setAttribute("users", users);
-        getServletContext().getRequestDispatcher("/users.jsp").forward(req, resp);
+        resp.sendRedirect(req.getContextPath() + "/usuarios"); //clase UserServletShow
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String[] idsTable = req.getParameterValues("delete");
+        if (idsTable != null && idsTable.length > 0) {
+            Arrays.asList(idsTable).forEach(u -> {
+                this.userService.deleteUser(Long.parseLong(u));
+            });
+        } else {
+            req.getSession().setAttribute("sessionError", 0);
+        }
+        resp.sendRedirect(req.getContextPath() + "/usuarios");
     }
 }
