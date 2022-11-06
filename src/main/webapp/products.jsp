@@ -26,37 +26,28 @@
                     <a class="nav-link" aria-current="page" href="<%=request.getContextPath()%>/inicio">Inicio</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Productos
-                    </a>
+                    <a class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Productos</a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="<%=request.getContextPath()%>/productos/data-show">Lista de Productos</a></li>
                         <li><a class="dropdown-item" href="<%=request.getContextPath()%>/productos/formulario/save">Registro de Productos</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="<%=request.getContextPath()%>/productos/data-show">Lista de Categorías</a></li>
-                        <li><a class="dropdown-item" href="<%=request.getContextPath()%>/productos/formulario/save">Registro de Categorías</a></li>
+                        <li><a class="dropdown-item" href="<%=request.getContextPath()%>/categoria-producto/data-show">Lista de Categorías</a></li>
+                        <li><a class="dropdown-item" href="<%=request.getContextPath()%>/categoria-producto/formulario/save">Registro de Categorías</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Usuarios
-                    </a>
+                    <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Usuarios</a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="<%=request.getContextPath()%>/usuarios/data-show">Lista de Usuarios</a>
-                        </li>
-                        <li><a class="dropdown-item" href="<%=request.getContextPath()%>/usuarios/formulario/save">Registro
-                            de Usuarios</a></li>
+                        <li><a class="dropdown-item" href="<%=request.getContextPath()%>/usuarios/data-show">Lista de Usuarios</a></li>
+                        <li><a class="dropdown-item" href="<%=request.getContextPath()%>/usuarios/formulario/save">Registro de Usuarios</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Login
-                    </a>
+                    <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Login</a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="<%=request.getContextPath()%>/sesion/login">Iniciar
-                            Sesión</a></li>
+                        <li><a class="dropdown-item" href="<%=request.getContextPath()%>/sesion/login">Iniciar Sesión</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -122,7 +113,7 @@
                             <form action="<%=request.getContextPath()%>/productos/data-show" class="mb-0 mt-2">
                                 <div class="d-flex justify-content-end">
                                     <a class="btn btn-primary me-2" href="<%=request.getContextPath()%>/productos/formulario/save">Nuevo Producto</a>
-                                    <a class="btn btn-secondary me-2" href="<%=request.getContextPath()%>/productos/formulario/save">Nueva Categoría</a>
+                                    <a class="btn btn-secondary me-2" href="<%=request.getContextPath()%>/categoria-producto/formulario/save">Nueva Categoría</a>
                                     <input type="submit" class="btn btn-danger ms-1" value="Eliminar" onclick="return confirm('¿Está seguro que desea eliminar?');"/>
                                 </div>
                             </form>

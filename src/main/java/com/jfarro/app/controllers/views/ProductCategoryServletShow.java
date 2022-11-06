@@ -22,8 +22,8 @@ public class ProductCategoryServletShow extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<ProductCategory> products = this.productService.findAllCategory();
-        req.setAttribute("products", products);
+        List<ProductCategory> categories = this.productService.findAllCategory();
+        req.setAttribute("categories", categories);
         getServletContext().getRequestDispatcher("/product-category.jsp").forward(req, resp);
     }
 }

@@ -22,6 +22,13 @@ public class FormProductCategoryServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        long id;
+        try {
+            id = Long.parseLong(req.getParameter("id"));
+            req.getSession().setAttribute("idCategory", id);
+        } catch (NumberFormatException ex) {
+            id = 0;
+        }
         resp.sendRedirect(req.getContextPath() + "/categoria-producto/formulario");
     }
 
@@ -31,18 +38,26 @@ public class FormProductCategoryServlet extends HttpServlet {
 
         Map<String, String> errors = new HashMap<>();
         if (name == null || name.isBlank()) {
-            errors.put("nameError", "El campo nombre de la categoría no puede estar vacío");
+            errors.put("nameError", "El campo nombre de la categoría no puede estar vacío.");
+        }
+
+        long id;
+        try {
+            id = Long.parseLong(req.getParameter("id"));
+        } catch (NumberFormatException ex) {
+            id = 0;
         }
 
         ProductCategory category = new ProductCategory();
-        category.setName(name.trim());
+        category.setId(id);
+        category.setName(name.trim().toUpperCase());
 
         if (errors.isEmpty()) {
             this.productService.saveProductCategory(category);
             resp.sendRedirect(req.getContextPath() + "/categoria-producto");
         } else {
             Map<String, Object> errorRedirect = new HashMap<>();
-            errorRedirect.put("product", category);
+            errorRedirect.put("category", category);
             errorRedirect.put("categoryErrors", errors);
             req.getSession().setAttribute("formErrors", errorRedirect);
             resp.sendRedirect(req.getContextPath() + "/categoria-producto/formulario");

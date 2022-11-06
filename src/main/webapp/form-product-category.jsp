@@ -1,8 +1,19 @@
+<%@ page import="com.jfarro.app.models.ProductCategory" %>
+<%@ page import="java.util.Map" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    Map<String, String> errors = (Map<String, String>) request.getAttribute("categoryErrors");
+
+    ProductCategory category = (ProductCategory) request.getAttribute("category");
+    String name = "";
+    if (category != null) {
+        name = category.getName() != null ? category.getName() : "";
+    }
+%>
 <html>
 <head>
     <meta charset="UTF-8"/>
-    <title>Inicio</title>
+    <title>Nuevo Producto</title>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/bootstrap/css/style.css"/>
 </head>
@@ -52,6 +63,53 @@
             </div>
         </div>
     </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-2 home">
+                <a href="<%=request.getContextPath()%>/productos">
+                    <i class="fa-solid fa-warehouse"></i>
+                </a>
+                <a class="enlace" href="<%=request.getContextPath()%>/productos/data-show">Productos</a>
+            </div>
+            <div class="col-3 home">
+                <a href="<%=request.getContextPath()%>/categoria-producto">
+                    <i class="fa-solid fa-layer-group"></i>
+                </a>
+                <a class="enlace" href="<%=request.getContextPath()%>/categoria-producto/data-show">Categorías</a>
+            </div>
+        </div>
+        <div class="row justify-content-center"> <!-- para centrar en la pantalla d-flex justify-content-center align-items-center vh-100  -->
+            <div class="col-7">
+                <% if (errors != null) { %>
+                <div class="alert alert-danger" role="alert">
+                    <ul>
+                        <%= errors.containsKey("nameError") ? "<li>" + errors.get("nameError") + "</li>" : "" %>
+                    </ul>
+                </div>
+                <% } %>
+                <div class="card mt-4 shadow">
+                    <div class="card-header">
+                        <h4>Registro de Categoría de Producto</h4>
+                    </div>
+                    <form class="mb-0" action="<%=request.getContextPath()%>/categoria-producto/formulario/save" method="post">
+                        <div class="card-body m-3">
+                            <div class="row">
+                                <div class="mb-3 col-12">
+                                    <label for="name" class="form-label">Nombre de categoría:</label>
+                                    <input type="text" class="form-control" id="name" name="name" value="<%=!name.isBlank() ? name : ""%>"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer text-end">
+                            <input type="submit" class="btn btn-primary" value="Guardar" onclick="return confirm('¿Esta seguro de guardar los datos ingresados?');"/>
+                            <input type="hidden" name="id" value="<%=request.getAttribute("id")%>"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/82ec21a6d1.js" crossorigin="anonymous"></script>
 </body>
 </html>
