@@ -1,4 +1,24 @@
+<%@ page import="java.util.List" %>
+<%@ page import="com.jfarro.app.models.ProductCategory" %>
+<%@ page import="com.jfarro.app.models.Product" %>
+<%@ page import="java.util.Map" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    List<ProductCategory> categories = (List<ProductCategory>) request.getAttribute("categories");
+    Map<String, String> errors = (Map<String, String>) request.getAttribute("productErrors");
+
+    Product product = (Product) request.getAttribute("product");
+    String name = "";
+    long idCategory = 0;
+    int amount = 0;
+    double price = 0;
+    if (product != null) {
+        name = product.getName() != null ? product.getName() : "";
+        idCategory = product.getCategory().getId() != null ? product.getCategory().getId() : 0;
+        amount = product.getAmount() != null ? product.getAmount() : 0;
+        price = product.getPrice() != null ? product.getPrice() : 0;
+    }
+%>
 <html>
 <head>
     <meta charset="UTF-8"/>
@@ -75,16 +95,26 @@
         </div>
         <div class="row justify-content-center"> <!-- para centrar en la pantalla d-flex justify-content-center align-items-center vh-100  -->
             <div class="col-7">
+                <% if (errors != null) { %>
+                <div class="alert alert-danger" role="alert">
+                    <ul>
+                        <%= errors.containsKey("nameError") ? "<li>" + errors.get("nameError") + "</li>" : "" %>
+                        <%= errors.containsKey("categoryError") ? "<li>" + errors.get("categoryError") + "</li>" : "" %>
+                        <%= errors.containsKey("amountError") ? "<li>" + errors.get("amountError") + "</li>" : "" %>
+                        <%= errors.containsKey("priceError") ? "<li>" + errors.get("priceError") + "</li>" : "" %>
+                    </ul>
+                </div>
+                <% } %>
                 <div class="card mt-4 shadow">
                     <div class="card-header">
                         <h4>Registro de Producto</h4>
                     </div>
-                    <form class="mb-0" action="">
+                    <form class="mb-0" action="<%=request.getContextPath()%>/productos/formulario/save" method="post">
                         <div class="card-body m-3">
                             <div class="row">
                                 <div class="mb-3 col-12">
                                     <label for="name" class="form-label">Nombre del producto:</label>
-                                    <input type="text" class="form-control" id="name" name="name"/>
+                                    <input type="text" class="form-control" id="name" name="name" value="<%=!name.isBlank() ? name : ""%>"/>
                                 </div>
                             </div>
                             <div class="row">
@@ -92,22 +122,26 @@
                                     <label class="form-label">Categoría:</label>
                                     <select class="form-select" name="category">
                                         <option value="">-Seleccionar-</option>
+                                        <% for (ProductCategory category: categories) { %>
+                                        <option value="<%=category.getId()%>" <%= idCategory == category.getId() ? "selected" : ""%>><%=category.getName()%></option>
+                                        <% } %>
                                     </select>
                                 </div>
                             </div>
                             <div class="row g-2">
                                 <div class="col">
                                     <label for="amount" class="form-label">Cantidad:</label>
-                                    <input type="number" class="form-control" id="amount" name="amount"/>
+                                    <input type="number" class="form-control" id="amount" name="amount" value="<%=amount > 0 ? amount : ""%>"/>
                                 </div>
                                 <div class="col">
                                     <label for="price" class="form-label">Precio:</label>
-                                    <input type="text" class="form-control" id="price" name="price"/>
+                                    <input type="text" class="form-control" id="price" name="price" value="<%=price > 0 ? price : ""%>"/>
                                 </div>
                             </div>
                         </div>
                         <div class="card-footer text-end">
-                            <input type="submit" class="btn btn-primary" value="Guardar"/>
+                            <input type="submit" class="btn btn-primary" value="Guardar" onclick="return confirm('¿Esta seguro de guardar los datos ingresados?');"/>
+                            <input type="hidden" name="id" value="<%=request.getAttribute("id")%>"/>
                         </div>
                     </form>
                 </div>

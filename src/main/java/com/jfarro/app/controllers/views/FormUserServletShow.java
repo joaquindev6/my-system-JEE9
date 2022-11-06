@@ -23,15 +23,17 @@ public class FormUserServletShow extends HttpServlet {
         long id = 0;
         if (req.getSession().getAttribute("idUser") != null) {
             id = (Long) req.getSession().getAttribute("idUser");
+            req.setAttribute("id", id);
+            req.getSession().removeAttribute("idUser");
         }
         if (id > 0) {
             User user = this.userService.findByIdUser(id);
             req.setAttribute("user", user);
         } else {
             if (req.getSession().getAttribute("errorsForm") != null) {
-                Map<String, Object> messages = (Map<String, Object>) req.getSession().getAttribute("errorsForm");
-                req.setAttribute("user", messages.get("user"));
-                req.setAttribute("userErrors", messages.get("userErrors"));
+                Map<String, Object> messageErrors = (Map<String, Object>) req.getSession().getAttribute("errorsForm");
+                req.setAttribute("user", messageErrors.get("user"));
+                req.setAttribute("userErrors", messageErrors.get("userErrors"));
                 req.getSession().removeAttribute("errorsForm"); //Eliminando toda los datos de session
             }
         }

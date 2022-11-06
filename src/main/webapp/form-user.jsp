@@ -182,6 +182,7 @@
                         </div>
                         <div class="card-footer text-end">
                             <input type="submit" class="btn btn-primary" value="Guardar" onclick="return confirm('¿Esta seguro de guardar los datos ingresados?');"/>
+                            <input type="hidden" name="id" value="<%=request.getAttribute("id")%>"/>
                         </div>
                     </form>
                 </div>

@@ -77,8 +77,8 @@ public class FormUserServlet extends HttpServlet {
 
         long id;
         try {
-            id = (Long) req.getSession().getAttribute("idUser");
-        } catch (Exception e) {
+            id = Long.parseLong(req.getParameter("id"));
+        } catch (NumberFormatException ex) {
             id = 0;
         }
 
@@ -95,9 +95,6 @@ public class FormUserServlet extends HttpServlet {
 
         if (errors.isEmpty()) {
             this.userService.saveUser(user);
-            if (id > 0) {
-                req.getSession().removeAttribute("idUser");
-            }
             resp.sendRedirect(req.getContextPath() + "/usuarios/data-show");
         } else {
             Map<String, Object> errorsRedirect = new HashMap<>();

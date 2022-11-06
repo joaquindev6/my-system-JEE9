@@ -2,6 +2,7 @@ package com.jfarro.app.controllers.views;
 
 import com.jfarro.app.models.User;
 import com.jfarro.app.services.UserService;
+import com.jfarro.app.util.DataFormat;
 import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -22,8 +23,8 @@ public class UserServletShow extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<User> users = this.userService.findAllUsers();
         users.forEach(u -> {
-            u.setNames(formatData(u.getNames().split(" ")));
-            u.setLastNames(formatData(u.getLastNames().split(" ")));
+            u.setNames(DataFormat.formatTextMayusMinus(u.getNames().split(" ")));
+            u.setLastNames(DataFormat.formatTextMayusMinus(u.getLastNames().split(" ")));
             if (u.getSex().equalsIgnoreCase("m")) {
                 u.setSex("Masculino");
             }
@@ -40,16 +41,8 @@ public class UserServletShow extends HttpServlet {
         req.setAttribute("users", users);
         if (req.getSession().getAttribute("sessionError") != null) {
             req.setAttribute("errorDelete", "Debe seleccionar el usuario que desea eliminar.");
-            req.getSession().removeAttribute("errorDelete");
+            req.getSession().removeAttribute("sessionError");
         }
         getServletContext().getRequestDispatcher("/users.jsp").forward(req, resp);
-    }
-
-    private String formatData(String[] datas) {
-        String data = "";
-        for (String d: datas) {
-            data += " " + (d.substring(0, 1).toUpperCase() + d.substring(1).toLowerCase());
-        }
-        return data.trim();
     }
 }

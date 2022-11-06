@@ -22,7 +22,7 @@ public class ProductRepositoryImpl implements ProductRepository {
     public List<Product> findAll() throws SQLException {
         List<Product> products = new ArrayList<>();
         try (Statement stmt = this.conn.createStatement()) {
-            try (ResultSet rs = stmt.executeQuery("SELECT .*, c.name FROM products as p INNER JOIN product_category as c ON p.id_category = c.id")) {
+            try (ResultSet rs = stmt.executeQuery("SELECT p.*, c.name as name_category FROM products as p INNER JOIN product_category as c ON p.id_category = c.id")) {
                 while (rs.next()) {
                     products.add(getProduct(rs));
                 }
@@ -34,8 +34,8 @@ public class ProductRepositoryImpl implements ProductRepository {
     @Override
     public Product findById(Long id) throws SQLException {
         Product product = null;
-        try (PreparedStatement pstm = this.conn.prepareStatement("SELECT p.*, c.name FROM products as p INNER JOIN product_category as c " +
-                "ON p.id_category = c.id WHERE id = ?")) {
+        try (PreparedStatement pstm = this.conn.prepareStatement("SELECT p.*, c.name as name_category FROM products as p INNER JOIN product_category as c " +
+                "ON p.id_category = c.id WHERE p.id = ?")) {
             pstm.setLong(1, id);
             try (ResultSet rs = pstm.executeQuery()) {
                 if (rs.next()) {
@@ -84,8 +84,8 @@ public class ProductRepositoryImpl implements ProductRepository {
         product.setAmount(rs.getInt("amount"));
 
         ProductCategory category = new ProductCategory();
-        category.setId(rs.getLong("id"));
-        category.setName(rs.getString("name"));
+        category.setId(rs.getLong("id_category"));
+        category.setName(rs.getString("name_category"));
         product.setCategory(category);
 
         return product;

@@ -1,5 +1,6 @@
 package com.jfarro.app.repositorys.impl;
 
+import com.jfarro.app.annotations.ConnectionMySQL;
 import com.jfarro.app.annotations.Repository;
 import com.jfarro.app.models.ProductCategory;
 import com.jfarro.app.repositorys.ProductCategoryRepository;
@@ -13,6 +14,7 @@ import java.util.List;
 public class ProductCategoryRepositoryImpl implements ProductCategoryRepository {
 
     @Inject
+    @ConnectionMySQL
     private Connection conn;
 
     @Override
