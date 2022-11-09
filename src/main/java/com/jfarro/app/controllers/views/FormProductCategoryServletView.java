@@ -2,7 +2,7 @@ package com.jfarro.app.controllers.views;
 
 import com.jfarro.app.models.ProductCategory;
 import com.jfarro.app.services.ProductService;
-import jakarta.inject.Inject;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

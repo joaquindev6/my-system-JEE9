@@ -2,7 +2,7 @@ package com.jfarro.app.repositorys.impl;
 
 import com.jfarro.app.annotations.ConnectionMySQL;
 import com.jfarro.app.models.User;
-import jakarta.inject.Inject;
+import javax.inject.Inject;
 import org.junit.jupiter.api.Test;
 
 import java.sql.*;
