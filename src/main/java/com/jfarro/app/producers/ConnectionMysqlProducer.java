@@ -10,6 +10,8 @@ import java.sql.SQLException;
 
 public class ConnectionMysqlProducer {
 
+    private Connection conn;
+
     private static final String URL = "jdbc:mysql://localhost:3306/ejercicio1?useTimezone=true&serverTimezone=UTC";
     private static final String USERNAME = "root";
     private static final String PASSWORD = "farro123";
@@ -26,7 +28,10 @@ public class ConnectionMysqlProducer {
     @RequestScoped
     @ConnectionMySQL
     private Connection getConnectioPostgreSQL() throws SQLException, ClassNotFoundException {
-        Class.forName("org.postgresql.Driver");
-        return DriverManager.getConnection("jdbc:postgresql://ec2-54-163-34-107.compute-1.amazonaws.com:5432/d924lljh3h2q75", "tkdnpnqlgxntpi", "4e034f7db37ffe0ee6fdba71d896df34ee150e30972d36c44b8a76b2dc9dff7b");
+        if (conn == null) {
+            Class.forName("org.postgresql.Driver");
+            this.conn = DriverManager.getConnection("jdbc:postgresql://ec2-54-163-34-107.compute-1.amazonaws.com:5432/d924lljh3h2q75", "tkdnpnqlgxntpi", "4e034f7db37ffe0ee6fdba71d896df34ee150e30972d36c44b8a76b2dc9dff7b");
+        }
+        return this.conn;
     }
 }
