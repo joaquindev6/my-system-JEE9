@@ -32,6 +32,7 @@ com\jfarro\app\repositorys\impl\ProductCategoryRepositoryImpl.class
 com\jfarro\app\repositorys\impl\UserRepositoryImpl.class
 com\jfarro\app\controllers\UserServlet.class
 com\jfarro\app\controllers\ProductServlet.class
+com\jfarro\app\annotations\ConnectionPostgreSQL.class
 com\jfarro\app\services\impl\UserServiceImpl.class
 com\jfarro\app\controllers\IndexServlet.class
 com\jfarro\app\exceptions\ServiceJdbcException.class
