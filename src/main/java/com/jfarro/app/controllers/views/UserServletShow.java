@@ -21,7 +21,6 @@ public class UserServletShow extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("********************** " + userService);
         List<User> users = this.userService.findAllUsers();
         users.forEach(u -> {
             u.setNames(DataFormat.formatTextMayusMinus(u.getNames().split(" ")));

@@ -27,6 +27,6 @@ public class ConnectionMysqlProducer {
     @ConnectionMySQL
     private Connection getConnectioPostgreSQL() throws SQLException, ClassNotFoundException {
         Class.forName("org.postgresql.Driver");
-        return DriverManager.getConnection("postgres://tkdnpnqlgxntpi:4e034f7db37ffe0ee6fdba71d896df34ee150e30972d36c44b8a76b2dc9dff7b@ec2-54-163-34-107.compute-1.amazonaws.com:5432/d924lljh3h2q75");
+        return DriverManager.getConnection("jdbc:postgresql://ec2-54-163-34-107.compute-1.amazonaws.com:5432/d924lljh3h2q75", "tkdnpnqlgxntpi", "4e034f7db37ffe0ee6fdba71d896df34ee150e30972d36c44b8a76b2dc9dff7b");
     }
 }
