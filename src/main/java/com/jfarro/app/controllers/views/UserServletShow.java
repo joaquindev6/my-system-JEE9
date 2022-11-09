@@ -25,16 +25,16 @@ public class UserServletShow extends HttpServlet {
         users.forEach(u -> {
             u.setNames(DataFormat.formatTextMayusMinus(u.getNames().split(" ")));
             u.setLastNames(DataFormat.formatTextMayusMinus(u.getLastNames().split(" ")));
-            if (u.getSex().equalsIgnoreCase("m")) {
+            if ("m".equalsIgnoreCase(u.getSex())) {
                 u.setSex("Masculino");
             }
-            if (u.getSex().equalsIgnoreCase("f")) {
+            if ("f".equalsIgnoreCase(u.getSex())) {
                 u.setSex("Femenino");
             }
-            if (u.getRole().equalsIgnoreCase("ROLE_ADMIN")) {
+            if ("ROLE_ADMIN".equalsIgnoreCase(u.getRole())) {
                 u.setRole("Administrador");
             }
-            if (u.getRole().equalsIgnoreCase("ROLE_USER")) {
+            if ("ROLE_USER".equalsIgnoreCase(u.getRole())) {
                 u.setRole("Usuario");
             }
         });
