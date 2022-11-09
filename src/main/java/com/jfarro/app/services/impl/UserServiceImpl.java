@@ -5,7 +5,7 @@ import com.jfarro.app.exceptions.ServiceJdbcException;
 import com.jfarro.app.models.User;
 import com.jfarro.app.repositorys.UserRepository;
 import com.jfarro.app.services.UserService;
-import jakarta.inject.Inject;
+import javax.inject.Inject;
 
 import java.sql.SQLException;
 import java.util.List;

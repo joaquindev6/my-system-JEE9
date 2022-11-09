@@ -1,4 +1,3 @@
-<%@ page import="com.jfarro.app.models.Product" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.jfarro.app.models.ProductCategory" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>

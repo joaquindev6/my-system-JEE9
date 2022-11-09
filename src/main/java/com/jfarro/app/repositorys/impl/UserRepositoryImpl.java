@@ -4,7 +4,7 @@ import com.jfarro.app.annotations.ConnectionMySQL;
 import com.jfarro.app.annotations.Repository;
 import com.jfarro.app.models.User;
 import com.jfarro.app.repositorys.UserRepository;
-import jakarta.inject.Inject;
+import javax.inject.Inject;
 
 import java.sql.*;
 import java.util.ArrayList;

@@ -5,7 +5,7 @@ import com.jfarro.app.annotations.Repository;
 import com.jfarro.app.models.Product;
 import com.jfarro.app.models.ProductCategory;
 import com.jfarro.app.repositorys.ProductRepository;
-import jakarta.inject.Inject;
+import javax.inject.Inject;
 
 import java.sql.*;
 import java.util.ArrayList;

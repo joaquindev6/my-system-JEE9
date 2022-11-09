@@ -1,6 +1,6 @@
 package com.jfarro.app.annotations;
 
-import jakarta.inject.Qualifier;
+import javax.inject.Qualifier;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

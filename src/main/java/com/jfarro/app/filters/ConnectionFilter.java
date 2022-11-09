@@ -1,9 +1,9 @@
 package com.jfarro.app.filters;
 
 import com.jfarro.app.exceptions.ServiceJdbcException;
-import jakarta.servlet.*;
-import jakarta.servlet.annotation.WebFilter;
-import jakarta.servlet.http.HttpServletResponse;
+import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 

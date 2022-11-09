@@ -1,9 +1,8 @@
 package com.jfarro.app.producers;
 
 import com.jfarro.app.annotations.ConnectionMySQL;
-import com.jfarro.app.annotations.ConnectionPostgreSQL;
-import jakarta.enterprise.context.RequestScoped;
-import jakarta.enterprise.inject.Produces;
+import javax.enterprise.context.RequestScoped;
+import javax.enterprise.inject.Produces;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

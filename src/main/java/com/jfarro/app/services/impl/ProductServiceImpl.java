@@ -7,7 +7,7 @@ import com.jfarro.app.models.ProductCategory;
 import com.jfarro.app.repositorys.ProductCategoryRepository;
 import com.jfarro.app.repositorys.ProductRepository;
 import com.jfarro.app.services.ProductService;
-import jakarta.inject.Inject;
+import javax.inject.Inject;
 
 import java.sql.SQLException;
 import java.util.List;

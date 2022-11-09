@@ -1,7 +1,7 @@
 package com.jfarro.app.annotations;
 
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.enterprise.inject.Stereotype;
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Stereotype;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
