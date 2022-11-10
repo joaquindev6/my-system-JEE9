@@ -1,8 +1,10 @@
 C:\Users\JOAQUIN\Desktop\Mi sistema practicando\my-system\src\main\java\com\jfarro\app\annotations\ServiceMysql.java
 C:\Users\JOAQUIN\Desktop\Mi sistema practicando\my-system\src\main\java\com\jfarro\app\repositorys\CrudRepository.java
 C:\Users\JOAQUIN\Desktop\Mi sistema practicando\my-system\src\main\java\com\jfarro\app\repositorys\ProductRepository.java
+C:\Users\JOAQUIN\Desktop\Mi sistema practicando\my-system\src\main\java\com\jfarro\app\repositorys\ItemShoppingCarRepository.java
 C:\Users\JOAQUIN\Desktop\Mi sistema practicando\my-system\src\main\java\com\jfarro\app\annotations\TransactionalMysql.java
 C:\Users\JOAQUIN\Desktop\Mi sistema practicando\my-system\src\main\java\com\jfarro\app\controllers\UserServlet.java
+C:\Users\JOAQUIN\Desktop\Mi sistema practicando\my-system\src\main\java\com\jfarro\app\repositorys\impl\ItemShoppingCarRepositoryImpl.java
 C:\Users\JOAQUIN\Desktop\Mi sistema practicando\my-system\src\main\java\com\jfarro\app\exceptions\ServiceJdbcException.java
 C:\Users\JOAQUIN\Desktop\Mi sistema practicando\my-system\src\main\java\com\jfarro\app\controllers\views\ProductCategoryServletShow.java
 C:\Users\JOAQUIN\Desktop\Mi sistema practicando\my-system\src\main\java\com\jfarro\app\repositorys\impl\ProductCategoryRepositoryImpl.java
@@ -24,12 +26,16 @@ C:\Users\JOAQUIN\Desktop\Mi sistema practicando\my-system\src\main\java\com\jfar
 C:\Users\JOAQUIN\Desktop\Mi sistema practicando\my-system\src\main\java\com\jfarro\app\annotations\ConnectionMySQL.java
 C:\Users\JOAQUIN\Desktop\Mi sistema practicando\my-system\src\main\java\com\jfarro\app\services\impl\ProductServiceImpl.java
 C:\Users\JOAQUIN\Desktop\Mi sistema practicando\my-system\src\main\java\com\jfarro\app\models\User.java
+C:\Users\JOAQUIN\Desktop\Mi sistema practicando\my-system\src\main\java\com\jfarro\app\repositorys\impl\ShoppingCarRepositoryImpl.java
+C:\Users\JOAQUIN\Desktop\Mi sistema practicando\my-system\src\main\java\com\jfarro\app\services\impl\ShoppingServiceImpl.java
 C:\Users\JOAQUIN\Desktop\Mi sistema practicando\my-system\src\main\java\com\jfarro\app\util\DataFormat.java
 C:\Users\JOAQUIN\Desktop\Mi sistema practicando\my-system\src\main\java\com\jfarro\app\models\ShoppingCar.java
 C:\Users\JOAQUIN\Desktop\Mi sistema practicando\my-system\src\main\java\com\jfarro\app\repositorys\impl\ProductRepositoryImpl.java
 C:\Users\JOAQUIN\Desktop\Mi sistema practicando\my-system\src\main\java\com\jfarro\app\controllers\views\FormProductCategoryServletView.java
+C:\Users\JOAQUIN\Desktop\Mi sistema practicando\my-system\src\main\java\com\jfarro\app\services\ShoppingService.java
 C:\Users\JOAQUIN\Desktop\Mi sistema practicando\my-system\src\main\java\com\jfarro\app\filters\LoginFilter.java
 C:\Users\JOAQUIN\Desktop\Mi sistema practicando\my-system\src\main\java\com\jfarro\app\producers\ConnectionMysqlProducer.java
+C:\Users\JOAQUIN\Desktop\Mi sistema practicando\my-system\src\main\java\com\jfarro\app\repositorys\ShoppingCarRepository.java
 C:\Users\JOAQUIN\Desktop\Mi sistema practicando\my-system\src\main\java\com\jfarro\app\repositorys\UserRepository.java
 C:\Users\JOAQUIN\Desktop\Mi sistema practicando\my-system\src\main\java\com\jfarro\app\controllers\views\FormProductServletShow.java
 C:\Users\JOAQUIN\Desktop\Mi sistema practicando\my-system\src\main\java\com\jfarro\app\services\UserService.java
