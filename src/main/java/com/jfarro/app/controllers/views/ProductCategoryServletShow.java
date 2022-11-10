@@ -22,6 +22,10 @@ public class ProductCategoryServletShow extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<ProductCategory> categories = this.productService.findAllCategory();
         req.setAttribute("categories", categories);
+        if (req.getSession().getAttribute("errorMessage") != null) {
+            req.setAttribute("errorDelete", "Debe seleccionar la categoría que desea eliminar.");
+            req.getSession().removeAttribute("errorMessage");
+        }
         getServletContext().getRequestDispatcher("/product-category.jsp").forward(req, resp);
     }
 }

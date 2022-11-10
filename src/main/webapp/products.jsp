@@ -77,8 +77,8 @@
                                 <th>Id</th>
                                 <th>Nombre</th>
                                 <th>Categoría</th>
-                                <th>Precio</th>
                                 <th>Stock</th>
+                                <th>Precio</th>
                                 <th>Editar</th>
                                 <th>Eliminar</th>
                             </tr>

@@ -43,4 +43,36 @@ INDEX idx_nameProCategory(name)
 
 INSERT INTO product_category(name) VALUES('monitor');
 
-INSERT INTO products(name, price, amount) VALUES('');
+CREATE TABLE shopping_car(
+id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+id_user INT NOT NULL,
+id_item_car INT NOT NULL
+);
+ALTER TABLE shopping_car ADD FOREIGN KEY(id_user) REFERENCES users(id);
+ALTER TABLE shopping_car ADD FOREIGN KEY(id_item_car) REFERENCES item_shopping_car(id) ON DELETE CASCADE;
+
+SELECT * FROM shopping_car;
+
+INSERT INTO shopping_car(id_user, id_item_car) VALUE(1, 1);
+INSERT INTO shopping_car(id_user, id_item_car) VALUE(1, 3);
+INSERT INTO shopping_car(id_user, id_item_car) VALUE(1, 1);
+
+CREATE TABLE item_shopping_car(
+id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+id_product INT NOT NULL,
+amount INT NOT NULL,
+FOREIGN KEY(id_product) REFERENCES products(id) ON DELETE CASCADE
+);
+
+SELECT * FROM item_shopping_car;
+
+INSERT INTO item_shopping_car(id_product, amount) VALUES(1, 8);
+INSERT INTO item_shopping_car(id_product, amount) VALUES(3, 8);
+
+/**** INNER JOIN para item_shopping_car *****/
+SELECT i.*, p.name, p.price, p.id_category, c.name FROM item_shopping_car AS i
+INNER JOIN products AS p ON i.id_product = p.id
+INNER JOIN product_category AS c ON p.id_category = c.id;
+
+/**** INNER JOIN para shopping_car *****/
+SELECT s.*, u.names, u.last_names, u.username, u.rol FROM shopping_car AS s INNER JOIN users AS u ON s.id_user = u.id INNER JOIN item_shopping_car AS i ON s.id_item_car = i.id;

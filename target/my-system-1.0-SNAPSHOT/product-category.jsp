@@ -109,7 +109,8 @@
                                     <form action="<%=request.getContextPath()%>/categoria-producto/data-show" class="mb-0 mt-2">
                                         <div class="d-flex justify-content-end">
                                             <a class="btn btn-primary me-2" href="<%=request.getContextPath()%>/categoria-producto/formulario/save">Nueva Categoría</a>
-                                            <input type="submit" class="btn btn-danger ms-1" value="Eliminar" onclick="return confirm('¿Está seguro que desea eliminar?');"/>
+                                            <input type="submit" class="btn btn-danger ms-1" value="Eliminar"
+                                                    onclick="return confirm('¿Está seguro que desea eliminar?');"/>
                                         </div>
                                     </form>
                                 </div>

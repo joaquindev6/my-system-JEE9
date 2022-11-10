@@ -15,21 +15,21 @@ public class ConnectionMysqlProducer {
     private static final String USERNAME = "root";
     private static final String PASSWORD = "farro123";
 
-//    @Produces
-//    @RequestScoped
-//    @ConnectionMySQL
-//    private Connection getConnectioMysql() throws SQLException, ClassNotFoundException {
-//        Class.forName("com.mysql.cj.jdbc.Driver");
-//        return DriverManager.getConnection(URL, USERNAME, PASSWORD);
-//    }
-
     @Produces
     @RequestScoped
     @ConnectionMySQL
-    private Connection getConnectioPostgreSQL() throws SQLException, ClassNotFoundException {
-        Class.forName("org.postgresql.Driver");
-        return DriverManager.getConnection("jdbc:postgresql://ec2-54-163-34-107.compute-1.amazonaws.com:5432/d924lljh3h2q75", "tkdnpnqlgxntpi", "4e034f7db37ffe0ee6fdba71d896df34ee150e30972d36c44b8a76b2dc9dff7b");
+    private Connection getConnectioMysql() throws SQLException, ClassNotFoundException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        return DriverManager.getConnection(URL, USERNAME, PASSWORD);
     }
+
+//    @Produces
+//    @RequestScoped
+//    @ConnectionMySQL
+//    private Connection getConnectioPostgreSQL() throws SQLException, ClassNotFoundException {
+//        Class.forName("org.postgresql.Driver");
+//        return DriverManager.getConnection("jdbc:postgresql://ec2-54-163-34-107.compute-1.amazonaws.com:5432/d924lljh3h2q75", "tkdnpnqlgxntpi", "4e034f7db37ffe0ee6fdba71d896df34ee150e30972d36c44b8a76b2dc9dff7b");
+//    }
 
     public void close(@Disposes @ConnectionMySQL Connection conn) throws SQLException {
         conn.close();
