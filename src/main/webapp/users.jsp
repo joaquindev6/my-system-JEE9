@@ -1,8 +1,10 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.jfarro.app.models.User" %>
+<%@ page import="com.jfarro.app.models.ItemShoppingCar" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     List<User> users = (List<User>) request.getAttribute("users");
+    List<ItemShoppingCar> items = (List<ItemShoppingCar>) request.getSession().getAttribute("listItems");
 %>
 <!-- https://datatables.net/manual/installation -->
 <html>
@@ -44,6 +46,9 @@
                         <li><a class="dropdown-item" href="<%=request.getContextPath()%>/usuarios/data-show">Lista de Usuarios</a></li>
                         <li><a class="dropdown-item" href="<%=request.getContextPath()%>/usuarios/formulario/save">Registro de Usuarios</a></li>
                     </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="<%=request.getContextPath()%>/carro-compra/data-show">(<%= items != null ? items.size() : 0 %>)Carrito</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Login</a>

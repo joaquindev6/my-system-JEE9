@@ -28,7 +28,6 @@ public class FormProductServletShow extends HttpServlet {
             c.setName(DataFormat.formatTextMayusMinus(c.getName().split(" ")));
         });
         req.setAttribute("categories", categories);
-
         long id = 0;
         if (req.getSession().getAttribute("idProduct") != null) {
             id = (Long) req.getSession().getAttribute("idProduct");

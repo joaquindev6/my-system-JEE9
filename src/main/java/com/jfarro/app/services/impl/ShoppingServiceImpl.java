@@ -103,9 +103,18 @@ public class ShoppingServiceImpl implements ShoppingService {
     }
 
     @Override
-    public void updateAmountItemShoppingCar(int amount, Long id) {
+    public void updateAmountItemShoppingCar(int amount, Long idItem) {
         try {
-            this.itemShoppingCarRepository.updateAmount(amount, id);
+            this.itemShoppingCarRepository.updateAmount(amount, idItem);
+        } catch (SQLException e) {
+            throw new ServiceJdbcException(e.getMessage(), e.getCause());
+        }
+    }
+
+    @Override
+    public Long findByIdProductItemShoppingCar(Long idProduct) {
+        try {
+            return this.itemShoppingCarRepository.findByIdProduct(idProduct);
         } catch (SQLException e) {
             throw new ServiceJdbcException(e.getMessage(), e.getCause());
         }

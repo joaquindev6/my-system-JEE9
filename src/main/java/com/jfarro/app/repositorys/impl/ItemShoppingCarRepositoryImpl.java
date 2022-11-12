@@ -34,10 +34,11 @@ public class ItemShoppingCarRepositoryImpl implements ItemShoppingCarRepository 
 
     @Override
     public ItemShoppingCar findById(Long id) throws SQLException {
-        ItemShoppingCar itemShoppingCar = new ItemShoppingCar();
+        ItemShoppingCar itemShoppingCar = new ItemShoppingCar(null);
         try (PreparedStatement pstm = this.conn.prepareStatement("SELECT i.*, p.name, p.price, p.id_category, c.name FROM item_shopping_car AS i " +
                 "INNER JOIN products AS p ON i.id_product = p.id " +
-                "INNER JOIN product_category AS c ON p.id_category = c.id WHERE id = ?")) {
+                "INNER JOIN product_category AS c ON p.id_category = c.id WHERE i.id = ?")) {
+            pstm.setLong(1, id);
             try (ResultSet rs = pstm.executeQuery()) {
                 while (rs.next()) {
                     itemShoppingCar = getItemShoppingCar(rs);
@@ -74,16 +75,30 @@ public class ItemShoppingCarRepositoryImpl implements ItemShoppingCarRepository 
     }
 
     @Override
-    public void updateAmount(int amount, Long id) throws SQLException {
+    public void updateAmount(int amount, Long idItem) throws SQLException {
         try (PreparedStatement pstm = this.conn.prepareStatement("UPDATE item_shopping_car SET amount = ? WHERE id = ?")) {
             pstm.setInt(1, amount);
-            pstm.setLong(2, id);
+            pstm.setLong(2, idItem);
             pstm.executeUpdate();
         }
     }
 
+    @Override
+    public Long findByIdProduct(Long idProduct) throws SQLException {
+        long idItem = 0;
+        try (PreparedStatement pstm = this.conn.prepareStatement("SELECT i.id FROM item_shopping_car AS i WHERE id_product = ?")) {
+            pstm.setLong(1, idProduct);
+            try (ResultSet rs = pstm.executeQuery()) {
+                if (rs.next()) {
+                    idItem = rs.getLong("i.id");
+                }
+            }
+        }
+        return idItem;
+    }
+
     private ItemShoppingCar getItemShoppingCar(ResultSet rs) throws SQLException {
-        ItemShoppingCar items = new ItemShoppingCar();
+        ItemShoppingCar items = new ItemShoppingCar(null);
         items.setId(rs.getLong("id"));
 
         Product product = new Product();

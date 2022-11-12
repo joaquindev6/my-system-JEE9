@@ -39,7 +39,7 @@ public class ShoppingCarRepositoryImpl implements ShoppingCarRepository {
         ShoppingCar car = null;
         try (PreparedStatement pstm = this.conn.prepareStatement("SELECT s.*, u.names, u.last_names, u.username, u.rol FROM shopping_car AS s " +
                 "INNER JOIN users AS u ON s.id_user = u.id " +
-                "INNER JOIN item_shopping_car AS i ON s.id_item_car = i.id; WHERE id = ?")) {
+                "INNER JOIN item_shopping_car AS i ON s.id_item_car = i.id WHERE id = ?")) {
             pstm.setLong(1, id);
             try (ResultSet rs = pstm.executeQuery()) {
                 if (rs.next()) {
@@ -55,7 +55,8 @@ public class ShoppingCarRepositoryImpl implements ShoppingCarRepository {
         List<ShoppingCar> list = new ArrayList<>();
         try (PreparedStatement pstm = this.conn.prepareStatement("SELECT s.*, u.names, u.last_names, u.username, u.rol FROM shopping_car AS s " +
                 "INNER JOIN users AS u ON s.id_user = u.id " +
-                "INNER JOIN item_shopping_car AS i ON s.id_item_car = i.id; WHERE id_user = ?")) {
+                "INNER JOIN item_shopping_car AS i ON s.id_item_car = i.id WHERE id_user = ?")) {
+            pstm.setLong(1, idUser);
             try (ResultSet rs = pstm.executeQuery()) {
                 while (rs.next()) {
                     list.add(getShoppingCar(rs));
@@ -71,7 +72,7 @@ public class ShoppingCarRepositoryImpl implements ShoppingCarRepository {
         if (shoppingCar.getId() != null && shoppingCar.getId() > 0) {
             sql = "UPDATE shopping_car SET id_user = ?, id_item_car = ? WHERE id = ?";
         } else {
-            sql = "INSERT INTO (id_user, id_item_car) VALUES(?,?)";
+            sql = "INSERT INTO shopping_car (id_user, id_item_car) VALUES(?,?)";
         }
         try (PreparedStatement pstm = this.conn.prepareStatement(sql)) {
             pstm.setLong(1, shoppingCar.getUser().getId());
@@ -99,7 +100,7 @@ public class ShoppingCarRepositoryImpl implements ShoppingCarRepository {
         user.setId(rs.getLong("id_user"));
         car.setUser(user);
 
-        ItemShoppingCar itemCar = new ItemShoppingCar();
+        ItemShoppingCar itemCar = new ItemShoppingCar(null);
         itemCar.setId(rs.getLong("id_item_car"));
         car.setItemCar(itemCar);
 

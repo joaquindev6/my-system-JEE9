@@ -1,19 +1,17 @@
-package com.jfarro.app.controllers;
+package com.jfarro.app.controllers.views;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import java.io.IOException;
 
-@WebServlet("/inicio")
-public class IndexServlet extends HttpServlet {
+@WebServlet("/carro-compra")
+public class ShoppingCarServletShow extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getSession().setAttribute("idUser", 1L);
-        getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
+        getServletContext().getRequestDispatcher("/shoppingcar.jsp").forward(req, resp);
     }
 }

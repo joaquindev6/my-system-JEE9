@@ -16,5 +16,6 @@ public interface ShoppingService {
     ItemShoppingCar findByIdItemShoppingCar(Long id);
     void saveItemShoppingCar(ItemShoppingCar itemShoppingCar);
     void deleteItemShoppingCar(Long id);
-    void updateAmountItemShoppingCar(int amount, Long id);
+    void updateAmountItemShoppingCar(int amount, Long idItem);
+    Long findByIdProductItemShoppingCar(Long idProduct);
 }

@@ -1,7 +1,9 @@
 <%@ page import="com.jfarro.app.models.Product" %>
 <%@ page import="java.util.List" %>
+<%@ page import="com.jfarro.app.models.ItemShoppingCar" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
+    List<ItemShoppingCar> items = (List<ItemShoppingCar>) request.getSession().getAttribute("listItems");
     List<Product> products = (List<Product>) request.getAttribute("products");
 %>
 <html>
@@ -44,6 +46,9 @@
                         <li><a class="dropdown-item" href="<%=request.getContextPath()%>/usuarios/formulario/save">Registro de Usuarios</a></li>
                     </ul>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="<%=request.getContextPath()%>/carro-compra/data-show">(<%= items != null ? items.size() : 0 %>)Carrito</a>
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Login</a>
                     <ul class="dropdown-menu">
@@ -80,6 +85,7 @@
                                 <th>Stock</th>
                                 <th>Precio</th>
                                 <th>Editar</th>
+                                <th>Carrito</th>
                                 <th>Eliminar</th>
                             </tr>
                             </thead>
@@ -99,8 +105,13 @@
                                         </div>
                                     </td>
                                     <td>
+                                        <div class="d-flex justify-content-center align-items-center">
+                                            <a class="btn btn-secondary" href="<%=request.getContextPath()%>/carro-compra/data-show?idProduct=<%= product.getId() %>">Agregar al carrito</a>
+                                        </div>
+                                    </td>
+                                    <td>
                                         <div class="form-check m-1 d-flex justify-content-center align-items-center">
-                                            <input class="form-check-input " type="checkbox" name="delete" value="<%=product.getId()%>"/>
+                                            <input class="form-check-input " type="checkbox" name="delete" value="<%= product.getId() %>"/>
                                         </div>
                                     </td>
                                 </tr>

@@ -1,10 +1,8 @@
 package com.jfarro.app.models;
 
-import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
 
-@SessionScoped
 public class ShoppingCar implements Serializable {
 
     private Long id;
