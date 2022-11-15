@@ -9,7 +9,7 @@ public interface UserService {
     List<User> findAllUsers();
     List<User> findAllWhereUsers(String filter, String data);
     User findByIdUser(Long id);
-    Optional<User> findByUsername(String username);
+    Optional<User> findByUsername(String username, String password);
     void saveUser(User product);
     void deleteUser(Long id);
 }

@@ -1,8 +1,10 @@
 <%@ page import="com.jfarro.app.models.ProductCategory" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="com.jfarro.app.models.ItemShoppingCar" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
+    Long idUser = (Long)session.getAttribute("idUser");
     List<ItemShoppingCar> items = (List<ItemShoppingCar>) request.getSession().getAttribute("listItems");
     Map<String, String> errors = (Map<String, String>) request.getAttribute("categoryErrors");
 
@@ -32,6 +34,7 @@
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="<%=request.getContextPath()%>/inicio">Inicio</a>
                     </li>
+                    <% if (idUser != null) { %>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Productos</a>
                         <ul class="dropdown-menu">
@@ -54,14 +57,16 @@
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="<%=request.getContextPath()%>/carro-compra/data-show">(<%= items != null ? items.size() : 0 %>)Carrito</a>
                     </li>
+                    <% } %>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Login</a>
                         <ul class="dropdown-menu">
+                            <% if (idUser == null) { %>
                             <li><a class="dropdown-item" href="<%=request.getContextPath()%>/sesion/login">Iniciar Sesión</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="<%=request.getContextPath()%>/">Salir</a></li>
+                            <% } %>
+                            <% if (idUser != null) { %>
+                            <li><a class="dropdown-item" href="<%=request.getContextPath()%>/sesion/logout">Salir</a></li>
+                            <% } %>
                         </ul>
                     </li>
                 </ul>

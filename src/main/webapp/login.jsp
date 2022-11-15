@@ -2,7 +2,11 @@
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
+    Long idUser = (Long)session.getAttribute("idUser");
     List<ItemShoppingCar> items = (List<ItemShoppingCar>) request.getSession().getAttribute("listItems");
+
+//    //Validaciones
+//    String denied = (String) request.getAttribute("denied") != null ? (String) request.getAttribute("denied") : "";
 %>
 <html>
 <head>
@@ -24,6 +28,7 @@
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="<%=request.getContextPath()%>/inicio">Inicio</a>
                     </li>
+                    <% if (idUser != null) { %>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Productos</a>
                         <ul class="dropdown-menu">
@@ -46,14 +51,16 @@
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="<%=request.getContextPath()%>/carro-compra/data-show">(<%= items != null ? items.size() : 0 %>)Carrito</a>
                     </li>
+                    <% } %>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Login</a>
                         <ul class="dropdown-menu">
+                            <% if (idUser == null) { %>
                             <li><a class="dropdown-item" href="<%=request.getContextPath()%>/sesion/login">Iniciar Sesión</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="<%=request.getContextPath()%>/">Salir</a></li>
+                            <% } %>
+                            <% if (idUser != null) { %>
+                            <li><a class="dropdown-item" href="<%=request.getContextPath()%>/sesion/logout">Salir</a></li>
+                            <% } %>
                         </ul>
                     </li>
                 </ul>
@@ -61,13 +68,18 @@
         </div>
     </nav>
     <div class="container">
+        <% if (request.getAttribute("valiLogin") != null) { %>
+        <div class="alert alert-danger mt-4" role="alert">
+            <%= request.getAttribute("valiLogin") %>
+        </div>
+        <% } %>
         <div class="row justify-content-center"> <!-- para centrar en la pantalla d-flex justify-content-center align-items-center vh-100  -->
             <div class="col-4">
                 <div class="card mt-4 shadow">
                     <div class="card-header text-center">
                         <h4>Inicio de Sesión</h4>
                     </div>
-                    <form class="mb-0" action="">
+                    <form id="formLogin" class="mb-0" action="<%=request.getContextPath()%>/sesion/login" method="post">
                         <div class="card-body m-3">
                             <div class="row">
                                 <div class="mb-3 col-12">
@@ -83,7 +95,7 @@
                             </div>
                         </div>
                         <div class="card-footer text-center">
-                            <input type="submit" class="btn btn-primary px-5 m-2" value="Ingresar"/>
+                            <input type="submit" class="btn btn-primary px-5 m-2" id="ingresar" value="Ingresar"/>
                         </div>
                     </form>
                 </div>
@@ -91,5 +103,10 @@
         </div>
     </div>
     <script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" type="text/javascript"></script>
+    <script src="<%=request.getContextPath()%>/funciones_js/LoginSweetAlert.js"></script>
+<%--    <% if (denied.equals("denied")) { %>--%>
+<%--    <script>deniedSession();</script>--%>
+<%--    <% } %>--%>
 </body>
 </html>

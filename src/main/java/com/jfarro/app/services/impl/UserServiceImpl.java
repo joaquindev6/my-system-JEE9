@@ -45,9 +45,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<User> findByUsername(String username) {
+    public Optional<User> findByUsername(String username, String password) {
         try {
-            return this.userRepository.findByUsername(username);
+            return Optional.ofNullable(this.userRepository.findByUsername(username)).filter(u -> u.getPassword().equals(password));
         } catch (SQLException e) {
             throw new ServiceJdbcException(e.getMessage(), e.getCause());
         }

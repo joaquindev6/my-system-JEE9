@@ -13,6 +13,10 @@ public class LoginRequestShow extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        if (req.getSession().getAttribute("valiLogin") != null) {
+            req.setAttribute("valiLogin", "Usuario o contraseña incorrecta, vuelve a intentarlo.");
+            req.getSession().removeAttribute("valiLogin");
+        }
         getServletContext().getRequestDispatcher("/login.jsp").forward(req, resp);
     }
 }

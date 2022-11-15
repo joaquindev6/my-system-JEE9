@@ -26,7 +26,7 @@ public class FormProductServlet extends HttpServlet {
         try {
             id = Long.parseLong(req.getParameter("id"));
             req.getSession().setAttribute("idProduct", id);
-        } catch (NumberFormatException ex) {
+        } catch (Exception ex) {
             id = 0;
         }
         resp.sendRedirect(req.getContextPath() + "/productos/formulario");

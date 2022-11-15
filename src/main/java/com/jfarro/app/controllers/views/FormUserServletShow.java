@@ -21,10 +21,10 @@ public class FormUserServletShow extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         long id = 0;
-        if (req.getSession().getAttribute("idUser") != null) {
-            id = (Long) req.getSession().getAttribute("idUser");
+        if (req.getSession().getAttribute("idUserForm") != null) {
+            id = (Long) req.getSession().getAttribute("idUserForm");
             req.setAttribute("id", id);
-            req.getSession().removeAttribute("idUser");
+            req.getSession().removeAttribute("idUserForm");
         }
         if (id > 0) {
             User user = this.userService.findByIdUser(id);

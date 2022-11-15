@@ -46,15 +46,17 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public Optional<User> findByUsername(String username) throws SQLException {
+    public User findByUsername(String username) throws SQLException {
         User user = null;
         try (PreparedStatement pstm = this.conn.prepareStatement("SELECT * FROM users WHERE username = ?")) {
             pstm.setString(1, username);
             try (ResultSet rs = pstm.executeQuery()) {
-                user = getUser(rs);
+                if (rs.next()) {
+                    user = getUser(rs);
+                }
             }
         }
-        return Optional.of(user);
+        return user;
     }
 
     @Override

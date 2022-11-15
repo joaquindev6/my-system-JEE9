@@ -28,7 +28,7 @@ public class FormUserServlet extends HttpServlet {
             id = 0;
         }
         if (id > 0) {
-            req.getSession().setAttribute("idUser", id);
+            req.getSession().setAttribute("idUserForm", id);
         }
         resp.sendRedirect(req.getContextPath() + "/usuarios/formulario");
     }

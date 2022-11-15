@@ -5,6 +5,7 @@
 <%@ page import="com.jfarro.app.models.ItemShoppingCar" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
+    Long idUser = (Long)session.getAttribute("idUser");
     List<ItemShoppingCar> items = (List<ItemShoppingCar>) request.getSession().getAttribute("listItems");
     List<ProductCategory> categories = (List<ProductCategory>) request.getAttribute("categories");
     Map<String, String> errors = (Map<String, String>) request.getAttribute("productErrors");
@@ -41,6 +42,7 @@
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="<%=request.getContextPath()%>/inicio">Inicio</a>
                     </li>
+                    <% if (idUser != null) { %>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Productos</a>
                         <ul class="dropdown-menu">
@@ -63,14 +65,16 @@
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="<%=request.getContextPath()%>/carro-compra/data-show">(<%= items != null ? items.size() : 0 %>)Carrito</a>
                     </li>
+                    <% } %>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Login</a>
                         <ul class="dropdown-menu">
+                            <% if (idUser == null) { %>
                             <li><a class="dropdown-item" href="<%=request.getContextPath()%>/sesion/login">Iniciar Sesión</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="<%=request.getContextPath()%>/">Salir</a></li>
+                            <% } %>
+                            <% if (idUser != null) { %>
+                            <li><a class="dropdown-item" href="<%=request.getContextPath()%>/sesion/logout">Salir</a></li>
+                            <% } %>
                         </ul>
                     </li>
                 </ul>
@@ -102,7 +106,7 @@
                     <div class="card-header">
                         <h4>Registro de Producto</h4>
                     </div>
-                    <form class="mb-0" action="<%=request.getContextPath()%>/productos/formulario/save" method="post">
+                    <form class="mb-0" id="formulario" action="<%=request.getContextPath()%>/productos/formulario/save" method="post">
                         <div class="card-body m-3">
                             <div class="row">
                                 <div class="mb-3 col-12">
@@ -128,12 +132,12 @@
                                 </div>
                                 <div class="col">
                                     <label for="price" class="form-label">Precio:</label>
-                                    <input type="text" class="form-control" id="price" name="price" value="<%=price > 0 ? price : ""%>"/>
+                                    <input type="number" class="form-control" id="price" name="price" value="<%=price > 0 ? price : ""%>"/>
                                 </div>
                             </div>
                         </div>
                         <div class="card-footer text-end">
-                            <input type="submit" class="btn btn-primary" value="Guardar" onclick="return confirm('¿Esta seguro de guardar los datos ingresados?');"/>
+                            <input type="submit" class="btn btn-primary" value="Guardar"/>
                             <input type="hidden" name="id" value="<%=request.getAttribute("id")%>"/>
                         </div>
                     </form>
@@ -143,5 +147,7 @@
     </div>
     <script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="https://kit.fontawesome.com/82ec21a6d1.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" type="text/javascript"></script>
+    <script src="<%=request.getContextPath()%>/funciones_js/FormProductSweetAlert.js" type="text/javascript"></script>
 </body>
 </html>
