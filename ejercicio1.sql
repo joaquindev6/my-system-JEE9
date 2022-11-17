@@ -86,6 +86,8 @@ FOREIGN KEY(id_venta_cab) REFERENCES tbl_ventas_cab(id),
 FOREIGN KEY(id_producto) REFERENCES products(id)
 );
 
+
+
 /**** INNER JOIN para item_shopping_car *****/
 SELECT i.*, p.name, p.price, p.id_category, c.name FROM item_shopping_car AS i
 INNER JOIN products AS p ON i.id_product = p.id
