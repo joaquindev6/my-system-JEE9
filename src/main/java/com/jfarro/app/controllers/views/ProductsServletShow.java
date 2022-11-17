@@ -34,6 +34,11 @@ public class ProductsServletShow extends HttpServlet {
             req.setAttribute("ventaFinish", req.getSession().getAttribute("ventaFinish"));
             req.getSession().removeAttribute("ventaFinish");
         }
+        // Mensaje de validacion si no existe productos disponibles
+        if (req.getSession().getAttribute("messageAmount") != null) {
+            req.setAttribute("messageAmount", req.getSession().getAttribute("messageAmount"));
+            req.getSession().removeAttribute("messageAmount");
+        }
         getServletContext().getRequestDispatcher("/products.jsp").forward(req, resp);
     }
 }

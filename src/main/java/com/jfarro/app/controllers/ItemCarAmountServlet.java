@@ -1,6 +1,7 @@
 package com.jfarro.app.controllers;
 
 import com.jfarro.app.models.ItemShoppingCar;
+import com.jfarro.app.models.Product;
 import com.jfarro.app.models.ShoppingCar;
 import com.jfarro.app.services.ShoppingService;
 
@@ -32,17 +33,10 @@ public class ItemCarAmountServlet extends HttpServlet {
         } catch (Exception e) {
             menos = 0;
         }
-//        long idUser;
-//        try {
-//            idUser = (Long) req.getSession().getAttribute("idUser");
-//        } catch (Exception e) {
-//            idUser = 0;
-//        }
-//        System.out.println("*************** " + idItem);
-//        ShoppingCar car = this.shoppingCarService.findByIdUserShoppingCar(idUser);
-//        System.out.println("*********** " + car.getItemCar().getId());
-//        if (car.getItemCar().getId() == idItem) {
-            ItemShoppingCar item = this.shoppingCarService.findByIdItemShoppingCar(idItem);
+        ItemShoppingCar item = this.shoppingCarService.findByIdItemShoppingCar(idItem);
+        //Si no hay productos disponibles no se podra incrementar la cantidad
+        Product p = item.getProduct();
+        if (p.getAmount() > 1) {
             if (mas > 0) {
                 int updateAmount = item.getAmount() + 1;
                 this.shoppingCarService.updateAmountItemShoppingCar(updateAmount, item.getId());
@@ -51,7 +45,7 @@ public class ItemCarAmountServlet extends HttpServlet {
                 int updateAmount = item.getAmount() - 1;
                 this.shoppingCarService.updateAmountItemShoppingCar(updateAmount, item.getId());
             }
-//        }
+        }
         resp.sendRedirect(req.getContextPath() + "/carro-compra");
     }
 }

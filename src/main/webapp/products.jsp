@@ -30,7 +30,6 @@
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="<%=request.getContextPath()%>/inicio">Inicio</a>
                     </li>
-                    <% if (user != null) { %>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Productos</a>
                         <ul class="dropdown-menu">
@@ -57,7 +56,6 @@
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="<%=request.getContextPath()%>/carro-compra/data-show">(<%= items != null ? items.size() : 0 %>)Carrito</a>
                     </li>
-                    <% } %>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Login</a>
                         <ul class="dropdown-menu">
@@ -82,6 +80,10 @@
         <% if (request.getAttribute("ventaFinish") != null) { %>
         <div class="alert alert-success mt-4" role="alert">
             <%= request.getAttribute("ventaFinish") %>
+        </div>
+        <% } %><% if (request.getAttribute("messageAmount") != null) { %>
+        <div class="alert alert-danger mt-4" role="alert">
+            <%= request.getAttribute("messageAmount") %>
         </div>
         <% } %>
         <div class="card mt-4 shadow">

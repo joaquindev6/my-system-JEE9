@@ -8,18 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebFilter({"/productos"})
-public class LoginFilter implements Filter {
+@WebFilter({"/productos/formulario", "/usuarios/*", "/categoria-producto/*"})
+public class AdminFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpServletResponse resp = (HttpServletResponse) servletResponse;
         User user = (User) req.getSession().getAttribute("user");
-        if (user != null && user.getId() > 0) {
-            if (user.getRole().equals("ROLE_ADMIN") || user.getRole().equals("ROLE_USER")) {
-                filterChain.doFilter(servletRequest, servletResponse);
-            }
+        if (user != null && user.getId() > 0 && user.getRole().equals("ROLE_ADMIN")) {
+            filterChain.doFilter(servletRequest, servletResponse);
         } else {
             resp.sendRedirect(req.getContextPath() + "/inicio");
         }

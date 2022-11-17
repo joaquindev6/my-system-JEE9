@@ -1,9 +1,7 @@
 package com.jfarro.app.controllers;
 
-import com.jfarro.app.models.ItemShoppingCar;
-import com.jfarro.app.models.Product;
-import com.jfarro.app.models.ShoppingCar;
-import com.jfarro.app.models.User;
+import com.jfarro.app.models.*;
+import com.jfarro.app.services.ProductService;
 import com.jfarro.app.services.ShoppingService;
 
 import javax.inject.Inject;
@@ -21,6 +19,9 @@ public class ShoppingCarServlet extends HttpServlet {
 
     @Inject
     private ShoppingService shoppingCarService;
+
+    @Inject
+    private ProductService productService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -61,21 +62,32 @@ public class ShoppingCarServlet extends HttpServlet {
             } else {
                 itemCar = this.shoppingCarService.findByIdItemShoppingCar(car.getItemCar().getId());
             }
-            if (items.contains(itemCar)) { //Compara por el id del item
-                this.shoppingCarService.updateAmountItemShoppingCar(itemCar.getAmount() + 1, itemCar.getId());
-            } else {
-                Long idItem = this.shoppingCarService.saveItemShoppingCar(item);
-                if (idItem != null && idItem > 0) {
-                    ShoppingCar shoppingCar = new ShoppingCar();
-                    User user = new User();
-                    user.setId(idUser);
-                    shoppingCar.setUser(user);
-                    item.setId(idItem);
-                    shoppingCar.setItemCar(item);
-                    this.shoppingCarService.saveShoppingCar(shoppingCar);
+
+            // Validando si existe unidades disponibles del producto, utilizo otro servicio para recuperar exactamente el producto
+            Product p = this.productService.findByIdProduct(idProduct);
+            if (p.getAmount() > 0) {
+                if (items.contains(itemCar)) { //Compara por el id del item
+                    if (p.getAmount() > 1) {
+                        this.shoppingCarService.updateAmountItemShoppingCar(itemCar.getAmount() + 1, itemCar.getId());
+                    }
                 } else {
-                    resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error al guardar el carrito, vuelva a intentarlo más tarde.");
+                    Long idItem = this.shoppingCarService.saveItemShoppingCar(item);
+                    if (idItem != null && idItem > 0) {
+                        ShoppingCar shoppingCar = new ShoppingCar();
+                        User user = new User();
+                        user.setId(idUser);
+                        shoppingCar.setUser(user);
+                        item.setId(idItem);
+                        shoppingCar.setItemCar(item);
+                        this.shoppingCarService.saveShoppingCar(shoppingCar);
+                    } else {
+                        resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error al guardar el carrito, vuelva a intentarlo más tarde.");
+                    }
                 }
+            } else {
+                req.getSession().setAttribute("messageAmount", "No hay productos disponibles.");
+                resp.sendRedirect(req.getContextPath() + "/productos");
+                return;
             }
         }
         resp.sendRedirect(req.getContextPath() + "/carro-compra");
