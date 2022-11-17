@@ -1,11 +1,13 @@
 <%@ page import="com.jfarro.app.models.Product" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.jfarro.app.models.ItemShoppingCar" %>
+<%@ page import="com.jfarro.app.models.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     Long idUser = (Long)session.getAttribute("idUser");
     List<ItemShoppingCar> items = (List<ItemShoppingCar>) request.getSession().getAttribute("listItems");
     List<Product> products = (List<Product>) request.getAttribute("products");
+    User user = (User) session.getAttribute("user");
 %>
 <html>
 <head>
@@ -28,26 +30,30 @@
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="<%=request.getContextPath()%>/inicio">Inicio</a>
                     </li>
-                    <% if (idUser != null) { %>
+                    <% if (user != null) { %>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Productos</a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="<%=request.getContextPath()%>/productos/data-show">Lista de Productos</a></li>
+                            <% if (user.getRole().equals("ROLE_ADMIN")) { %>
                             <li><a class="dropdown-item" href="<%=request.getContextPath()%>/productos/formulario/save">Registro de Productos</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
                             <li><a class="dropdown-item" href="<%=request.getContextPath()%>/categoria-producto/data-show">Lista de Categorías</a></li>
                             <li><a class="dropdown-item" href="<%=request.getContextPath()%>/categoria-producto/formulario/save">Registro de Categorías</a></li>
+                            <% } %>
                         </ul>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Usuarios</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="<%=request.getContextPath()%>/usuarios/data-show">Lista de Usuarios</a></li>
-                            <li><a class="dropdown-item" href="<%=request.getContextPath()%>/usuarios/formulario/save">Registro de Usuarios</a></li>
-                        </ul>
-                    </li>
+                        <% if (user.getRole().equals("ROLE_ADMIN")) { %>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Usuarios</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="<%=request.getContextPath()%>/usuarios/data-show">Lista de Usuarios</a></li>
+                                <li><a class="dropdown-item" href="<%=request.getContextPath()%>/usuarios/formulario/save">Registro de Usuarios</a></li>
+                            </ul>
+                        </li>
+                        <% } %>
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="<%=request.getContextPath()%>/carro-compra/data-show">(<%= items != null ? items.size() : 0 %>)Carrito</a>
                     </li>
@@ -55,10 +61,10 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Login</a>
                         <ul class="dropdown-menu">
-                            <% if (idUser == null) { %>
+                            <% if (user == null) { %>
                             <li><a class="dropdown-item" href="<%=request.getContextPath()%>/sesion/login">Iniciar Sesión</a></li>
                             <% } %>
-                            <% if (idUser != null) { %>
+                            <% if (user != null) { %>
                             <li><a class="dropdown-item" href="<%=request.getContextPath()%>/sesion/logout">Salir</a></li>
                             <% } %>
                         </ul>
@@ -88,9 +94,13 @@
                                 <th>Categoría</th>
                                 <th>Stock</th>
                                 <th>Precio</th>
+                                <% if (user.getRole().equals("ROLE_ADMIN")) { %>
                                 <th>Editar</th>
+                                <% } %>
                                 <th>Carrito</th>
+                                <% if (user.getRole().equals("ROLE_ADMIN")) { %>
                                 <th>Eliminar</th>
+                                <% } %>
                             </tr>
                             </thead>
                             <tbody>
@@ -101,6 +111,7 @@
                                     <td><%= product.getCategory().getName() %></td>
                                     <td><%= product.getAmount() %></td>
                                     <td><%= product.getPrice() %></td>
+                                    <% if (user.getRole().equals("ROLE_ADMIN")) { %>
                                     <td>
                                         <div class="d-flex">
                                             <div class="mx-auto">
@@ -108,16 +119,19 @@
                                             </div>
                                         </div>
                                     </td>
+                                    <% } %>
                                     <td>
                                         <div class="d-flex justify-content-center align-items-center">
                                             <a class="btn btn-secondary" href="<%=request.getContextPath()%>/carro-compra/data-show?idProduct=<%= product.getId() %>">Agregar al carrito</a>
                                         </div>
                                     </td>
+                                    <% if (user.getRole().equals("ROLE_ADMIN")) { %>
                                     <td>
                                         <div class="form-check m-1 d-flex justify-content-center align-items-center">
                                             <input class="form-check-input " type="checkbox" name="delete" value="<%= product.getId() %>"/>
                                         </div>
                                     </td>
+                                    <% } %>
                                 </tr>
                                 <% } %>
                             </tbody>
@@ -127,10 +141,12 @@
                         <div class="col-12 overflow-hidden">
                             <div class="mb-0 mt-2">
                                 <div class="d-flex justify-content-end">
+                                    <% if (user.getRole().equals("ROLE_ADMIN")) { %>
                                     <a class="btn btn-primary me-2" href="<%=request.getContextPath()%>/productos/formulario/save">Nuevo Producto</a>
                                     <a class="btn btn-secondary me-2" href="<%=request.getContextPath()%>/categoria-producto/formulario/save">Nueva Categoría</a>
                                     <input type="submit" class="btn btn-danger ms-1" id="btnDeleteProduct" value="Eliminar"/>
 <%--                                    onclick="return confirm('¿Está seguro que desea eliminar?');--%>
+                                    <% } %>
                                 </div>
                             </div>
                         </div>

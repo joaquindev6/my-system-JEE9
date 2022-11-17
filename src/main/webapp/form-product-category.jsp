@@ -101,7 +101,7 @@
                     <div class="card-header">
                         <h4>Registro de Categoría de Producto</h4>
                     </div>
-                    <form class="mb-0" action="<%=request.getContextPath()%>/categoria-producto/formulario/save" method="post">
+                    <form id="formSaveCategory" class="mb-0" action="<%=request.getContextPath()%>/categoria-producto/formulario/save" method="post">
                         <div class="card-body m-3">
                             <div class="row">
                                 <div class="mb-3 col-12">
@@ -111,7 +111,7 @@
                             </div>
                         </div>
                         <div class="card-footer text-end">
-                            <input type="submit" class="btn btn-primary" value="Guardar" onclick="return confirm('¿Esta seguro de guardar los datos ingresados?');"/>
+                            <input type="submit" class="btn btn-primary" value="Guardar"/>
                             <input type="hidden" name="id" value="<%=request.getAttribute("id")%>"/>
                         </div>
                     </form>
@@ -121,5 +121,7 @@
     </div>
     <script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="https://kit.fontawesome.com/82ec21a6d1.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" type="text/javascript"></script>
+    <script src="<%=request.getContextPath()%>/funciones_js/FormProductCategorySweetAlert.js" type="text/javascript"></script>
 </body>
 </html>

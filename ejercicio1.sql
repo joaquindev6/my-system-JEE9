@@ -101,3 +101,8 @@ SELECT s.*, u.names, u.last_names, u.username, u.rol FROM shopping_car AS s
 SELECT i.*, p.name, p.price, p.id_category, c.name FROM item_shopping_car AS i
 INNER JOIN products AS p ON i.id_product = p.id
 INNER JOIN product_category AS c ON p.id_category = c.id WHERE i.id = 3;
+
+SELECT s.* FROM shopping_car AS s 
+INNER JOIN users AS u ON s.id_user = u.id 
+INNER JOIN item_shopping_car AS i ON s.id_item_car = i.id 
+INNER JOIN products AS p ON i.id_product = p.id WHERE s.id_user = 1 and i.id_product = 1;

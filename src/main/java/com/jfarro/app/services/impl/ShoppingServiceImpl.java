@@ -49,9 +49,18 @@ public class ShoppingServiceImpl implements ShoppingService {
     }
 
     @Override
-    public void saveShoppingCar(ShoppingCar shoppingCar) {
+    public ShoppingCar findByIdUserShoppingCar(Long idUser, Long idProduct) {
         try {
-            this.shoppingCarRepository.save(shoppingCar);
+            return this.shoppingCarRepository.findByIdUser(idUser, idProduct);
+        } catch (SQLException e) {
+            throw new ServiceJdbcException(e.getMessage(), e.getCause());
+        }
+    }
+
+    @Override
+    public Long saveShoppingCar(ShoppingCar shoppingCar) {
+        try {
+            return this.shoppingCarRepository.save(shoppingCar);
         } catch (SQLException e) {
             throw new ServiceJdbcException(e.getMessage(), e.getCause());
         }
@@ -85,9 +94,9 @@ public class ShoppingServiceImpl implements ShoppingService {
     }
 
     @Override
-    public void saveItemShoppingCar(ItemShoppingCar itemShoppingCar) {
+    public Long saveItemShoppingCar(ItemShoppingCar itemShoppingCar) {
         try {
-            this.itemShoppingCarRepository.save(itemShoppingCar);
+            return this.itemShoppingCarRepository.save(itemShoppingCar);
         } catch (SQLException e) {
             throw new ServiceJdbcException(e.getMessage(), e.getCause());
         }

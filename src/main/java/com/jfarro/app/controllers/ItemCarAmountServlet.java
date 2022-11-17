@@ -1,6 +1,7 @@
 package com.jfarro.app.controllers;
 
 import com.jfarro.app.models.ItemShoppingCar;
+import com.jfarro.app.models.ShoppingCar;
 import com.jfarro.app.services.ShoppingService;
 
 import javax.inject.Inject;
@@ -31,15 +32,26 @@ public class ItemCarAmountServlet extends HttpServlet {
         } catch (Exception e) {
             menos = 0;
         }
-        ItemShoppingCar item = this.shoppingCarService.findByIdItemShoppingCar(idItem);
-        if (mas > 0) {
-            int updateAmount = item.getAmount() + 1;
-            this.shoppingCarService.updateAmountItemShoppingCar(updateAmount, idItem);
-        }
-        if (menos > 0) {
-            int updateAmount = item.getAmount() - 1;
-            this.shoppingCarService.updateAmountItemShoppingCar(updateAmount, idItem);
-        }
+//        long idUser;
+//        try {
+//            idUser = (Long) req.getSession().getAttribute("idUser");
+//        } catch (Exception e) {
+//            idUser = 0;
+//        }
+//        System.out.println("*************** " + idItem);
+//        ShoppingCar car = this.shoppingCarService.findByIdUserShoppingCar(idUser);
+//        System.out.println("*********** " + car.getItemCar().getId());
+//        if (car.getItemCar().getId() == idItem) {
+            ItemShoppingCar item = this.shoppingCarService.findByIdItemShoppingCar(idItem);
+            if (mas > 0) {
+                int updateAmount = item.getAmount() + 1;
+                this.shoppingCarService.updateAmountItemShoppingCar(updateAmount, item.getId());
+            }
+            if (menos > 0) {
+                int updateAmount = item.getAmount() - 1;
+                this.shoppingCarService.updateAmountItemShoppingCar(updateAmount, item.getId());
+            }
+//        }
         resp.sendRedirect(req.getContextPath() + "/carro-compra");
     }
 }

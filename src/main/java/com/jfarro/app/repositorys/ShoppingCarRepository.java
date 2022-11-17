@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface ShoppingCarRepository extends CrudRepository<ShoppingCar> {
     List<ShoppingCar> findAllByUser(Long idUser) throws SQLException;
+    ShoppingCar findByIdUser(Long idUser, Long idProduct) throws SQLException;
 }

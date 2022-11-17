@@ -40,9 +40,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void saveProduct(Product product) {
+    public Long saveProduct(Product product) {
         try {
-            this.productRepository.save(product);
+            return this.productRepository.save(product);
         } catch (SQLException e) {
             throw new ServiceJdbcException(e.getMessage(), e.getCause());
         }
@@ -76,9 +76,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void saveProductCategory(ProductCategory category) {
+    public Long saveProductCategory(ProductCategory category) {
         try {
-            this.categoryRepository.save(category);
+            return this.categoryRepository.save(category);
         } catch (SQLException e) {
             throw new ServiceJdbcException(e.getMessage(), e.getCause());
         }

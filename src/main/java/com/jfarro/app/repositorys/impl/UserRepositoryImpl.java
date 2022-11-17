@@ -9,7 +9,6 @@ import javax.inject.Inject;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public class UserRepositoryImpl implements UserRepository {
@@ -72,7 +71,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public void save(User user) throws SQLException {
+    public Long save(User user) throws SQLException {
         String query;
         if (user.getId() != null && user.getId() > 0L) {
             query = "UPDATE users SET names = ?, last_names = ?, age = ?, country = ?, sex = ?, rol = ?, username = ?, password = ? WHERE id = ?";
@@ -95,6 +94,7 @@ public class UserRepositoryImpl implements UserRepository {
 
             pstm.executeUpdate();
         }
+        return 0L;
     }
 
     @Override

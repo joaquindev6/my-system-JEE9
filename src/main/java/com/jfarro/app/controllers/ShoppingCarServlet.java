@@ -48,18 +48,28 @@ public class ShoppingCarServlet extends HttpServlet {
             if (items == null) {
                 items = new ArrayList<>();
             }
-            if (items.contains(item)) { //Compara por el id del producto
-                long idItem = this.shoppingCarService.findByIdProductItemShoppingCar(idProduct);
-                ItemShoppingCar itemCar = this.shoppingCarService.findByIdItemShoppingCar(idItem);
-                System.out.println("*************** cantidad " + itemCar.getAmount());
-                this.shoppingCarService.updateAmountItemShoppingCar(itemCar.getAmount() + 1, idItem);
+            ShoppingCar car;
+            try {
+                car = this.shoppingCarService.findByIdUserShoppingCar(idUser, idProduct);
+            } catch (NullPointerException e) {
+                car = null;
+            }
+            ItemShoppingCar itemCar;
+            if (car == null) {
+                itemCar = new ItemShoppingCar(null);
+                itemCar.setId(0L);
             } else {
-                this.shoppingCarService.saveItemShoppingCar(item);
+                itemCar = this.shoppingCarService.findByIdItemShoppingCar(car.getItemCar().getId());
+            }
+            if (items.contains(itemCar)) { //Compara por el id del item
+                this.shoppingCarService.updateAmountItemShoppingCar(itemCar.getAmount() + 1, itemCar.getId());
+            } else {
+                long idItem = this.shoppingCarService.saveItemShoppingCar(item);
                 ShoppingCar shoppingCar = new ShoppingCar();
                 User user = new User();
                 user.setId(idUser);
                 shoppingCar.setUser(user);
-                item.setId(this.shoppingCarService.findByIdProductItemShoppingCar(idProduct));
+                item.setId(idItem);
                 shoppingCar.setItemCar(item);
                 this.shoppingCarService.saveShoppingCar(shoppingCar);
             }

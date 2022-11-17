@@ -116,7 +116,7 @@
                     <div class="card-header">
                         <h4>Registro de Usuario</h4>
                     </div>
-                    <form class="mb-0" action="<%=request.getContextPath()%>/usuarios/formulario/save" method="post">
+                    <form id="formUser" class="mb-0" action="<%=request.getContextPath()%>/usuarios/formulario/save" method="post">
                         <div class="card-body m-3">
                             <div class="row">
                                 <div class="mb-3 col-12">
@@ -179,7 +179,7 @@
                             </div>
                         </div>
                         <div class="card-footer text-end">
-                            <input type="submit" class="btn btn-primary" value="Guardar" onclick="return confirm('¿Esta seguro de guardar los datos ingresados?');"/>
+                            <input type="submit" class="btn btn-primary" value="Guardar"/>
                             <input type="hidden" name="id" value="<%=request.getAttribute("id")%>"/>
                         </div>
                     </form>
@@ -188,27 +188,8 @@
         </div>
     </div>
     <script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Example starter JavaScript for disabling form submissions if there are invalid fields
-        (() => {
-            'use strict'
-
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            const forms = document.querySelectorAll('.needs-validation')
-
-            // Loop over them and prevent submission
-            Array.from(forms).forEach(form => {
-                form.addEventListener('submit', event => {
-                    if (!form.checkValidity()) {
-                        event.preventDefault()
-                        event.stopPropagation()
-                    }
-
-                    form.classList.add('was-validated')
-                }, false)
-            })
-        })()
-    </script>
     <script src="https://kit.fontawesome.com/82ec21a6d1.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" type="text/javascript"></script>
+    <script src="<%=request.getContextPath()%>/funciones_js/FormUserSweetAlert.js" type="text/javascript"></script>
 </body>
 </html>

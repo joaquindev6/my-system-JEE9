@@ -49,21 +49,28 @@ public class ItemShoppingCarRepositoryImpl implements ItemShoppingCarRepository 
     }
 
     @Override
-    public void save(ItemShoppingCar itemShoppingCar) throws SQLException {
-        String sql = "";
+    public Long save(ItemShoppingCar itemShoppingCar) throws SQLException {
+        long idItem = 0L;
+        String sql;
         if (itemShoppingCar.getId() != null && itemShoppingCar.getId() > 0) {
             sql = "UPDATE item_shopping_car SET id_product = ?, amount = ? WHERE id = ?";
         } else {
             sql = "INSERT INTO item_shopping_car(id_product, amount) VALUES(?,?)";
         }
-        try (PreparedStatement pstm = this.conn.prepareStatement(sql)) {
+        try (PreparedStatement pstm = this.conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             pstm.setLong(1, itemShoppingCar.getProduct().getId());
             pstm.setInt(2, itemShoppingCar.getAmount());
             if (itemShoppingCar.getId() != null && itemShoppingCar.getId() > 0) {
                 pstm.setLong(3, itemShoppingCar.getId());
             }
             pstm.executeUpdate();
+            ResultSet result = pstm.getGeneratedKeys();
+            if (result.next()) {
+                idItem = result.getLong(1);
+                System.out.println("******************** ID ITEM: " + idItem);
+            }
         }
+        return idItem;
     }
 
     @Override

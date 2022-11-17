@@ -45,7 +45,7 @@ public class ProductCategoryRepositoryImpl implements ProductCategoryRepository 
     }
 
     @Override
-    public void save(ProductCategory productCategory) throws SQLException {
+    public Long save(ProductCategory productCategory) throws SQLException {
         String sql;
         if (productCategory.getId() != null && productCategory.getId() > 0) {
             sql = "UPDATE product_category SET name = ? WHERE id = ?";
@@ -59,6 +59,7 @@ public class ProductCategoryRepositoryImpl implements ProductCategoryRepository 
             }
             pstm.executeUpdate();
         }
+        return 0L;
     }
 
     @Override

@@ -33,6 +33,7 @@ public class LoginServlet extends HttpServlet {
         if (username != null && password != null) {
             Optional<User> user = this.userService.findByUsername(username, password);
             if (user.isPresent()) {
+                req.getSession().setAttribute("user", user.get());
                 req.getSession().setAttribute("idUser", user.get().getId());
                 resp.sendRedirect(req.getContextPath() + "/inicio");
             } else {

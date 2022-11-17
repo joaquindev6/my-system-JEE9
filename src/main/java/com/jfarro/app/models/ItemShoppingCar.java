@@ -62,6 +62,6 @@ public class ItemShoppingCar {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ItemShoppingCar that = (ItemShoppingCar) o;
-        return Objects.equals(this.product.getId(), that.getProduct().getId());
+        return Objects.equals(this.getId(), that.getId());
     }
 }

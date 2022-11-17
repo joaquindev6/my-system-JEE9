@@ -1,21 +1,20 @@
-const formulario = document.getElementById("formulario");
+const formUser = document.getElementById("formUser");
 
-formulario.addEventListener("submit", function (e) {
-    e.preventDefault();
-    let datos = new FormData(formulario);
-
+formUser.addEventListener("submit", function (event) {
+    event.preventDefault();
+    const datos = new FormData(formUser);
     let value = true;
-    if (datos.get("name") === "" || datos.get("category") === "" || datos.get("amount") === ""
-        || datos.get("price") === "" || datos.get("id") === "") {
-        formulario.submit();
+    if (datos.get("names") === "" || datos.get("lastNames") === "" || datos.get("age") === ""
+        || datos.get("sex") === "" || datos.get("country") === "" || datos.get("role") === ""
+        || datos.get("username") === "" || datos.get("password") === "") {
+        formUser.submit();
         value = false;
     } else {
-        if (datos.get("price") <= 0 || datos.get("amount") <= 0) {
-            formulario.submit();
+        if (datos.get("age") <= 0) {
+            formUser.submit();
             value = false
         }
     }
-
     if (value) {
         Swal.fire({
             title: '¿Está seguro de guardar los datos ingresados?',
@@ -34,18 +33,9 @@ formulario.addEventListener("submit", function (e) {
                     timer: 1500
                 });
                 setTimeout(function () {
-                    formulario.submit();
+                    formUser.submit();
                 }, 1500);
             }
         });
     }
 });
-
-//const url = "/my-system/productos/formulario/save?name=" + datos.get("name")
-//     + "&category=" + datos.get("category")
-//     + "&amount=" + datos.get("amount")
-//     + "&price=" + datos.get("price")
-//     + "&id=" + datos.get("id");
-// fetch(url, {
-//     method: "POST"
-// });

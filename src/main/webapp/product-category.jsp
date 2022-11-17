@@ -79,7 +79,7 @@
                     <div class="card-header">
                         <h4>Lista de Categorías de Productos</h4>
                     </div>
-                    <form action="<%=request.getContextPath()%>/categoria-producto/data-show" method="post">
+                    <form id="formProductCategory" action="<%=request.getContextPath()%>/categoria-producto/data-show" method="post">
                         <div class="card-body m-3">
                             <div class="row overflow-hidden">
                                 <table id="mytable" class="table table-hover">
@@ -115,13 +115,12 @@
                             </div>
                             <div class="row justify-content-end mt-2 mb-0">
                                 <div class="col-12 overflow-hidden">
-                                    <form action="<%=request.getContextPath()%>/categoria-producto/data-show" class="mb-0 mt-2">
+                                    <div class="mb-0 mt-2">
                                         <div class="d-flex justify-content-end">
                                             <a class="btn btn-primary me-2" href="<%=request.getContextPath()%>/categoria-producto/formulario/save">Nueva Categoría</a>
-                                            <input type="submit" class="btn btn-danger ms-1" value="Eliminar"
-                                                    onclick="return confirm('¿Está seguro que desea eliminar?');"/>
+                                            <input type="submit" class="btn btn-danger ms-1" value="Eliminar"/>
                                         </div>
-                                    </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -133,6 +132,8 @@
     <script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" type="text/javascript"></script>
+    <script src="<%=request.getContextPath()%>/funciones_js/ProducCategorytSweetAlert.js" type="text/javascript"></script>
     <script>
         $(document).ready( function () {
             $('#mytable').DataTable({

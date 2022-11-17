@@ -67,7 +67,25 @@ public class ShoppingCarRepositoryImpl implements ShoppingCarRepository {
     }
 
     @Override
-    public void save(ShoppingCar shoppingCar) throws SQLException {
+    public ShoppingCar findByIdUser(Long idUser, Long idProduct) throws SQLException {
+        ShoppingCar car = null;
+        try (PreparedStatement pstm = this.conn.prepareStatement("SELECT s.* FROM shopping_car AS s " +
+                        "INNER JOIN users AS u ON s.id_user = u.id " +
+                        "INNER JOIN item_shopping_car AS i ON s.id_item_car = i.id " +
+                        "INNER JOIN products AS p ON i.id_product = p.id WHERE s.id_user = ? and i.id_product = ?")) {
+            pstm.setLong(1, idUser);
+            pstm.setLong(2, idProduct);
+            try (ResultSet rs = pstm.executeQuery()) {
+                if (rs.next()) {
+                    car = getShoppingCar(rs);
+                }
+            }
+        }
+        return car;
+    }
+
+    @Override
+    public Long save(ShoppingCar shoppingCar) throws SQLException {
         String sql;
         if (shoppingCar.getId() != null && shoppingCar.getId() > 0) {
             sql = "UPDATE shopping_car SET id_user = ?, id_item_car = ? WHERE id = ?";
@@ -82,6 +100,7 @@ public class ShoppingCarRepositoryImpl implements ShoppingCarRepository {
             }
             pstm.executeUpdate();
         }
+        return 0L;
     }
 
     @Override

@@ -54,9 +54,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void saveUser(User product) {
+    public Long saveUser(User product) {
         try {
-            this.userRepository.save(product);
+            return this.userRepository.save(product);
         } catch (SQLException e) {
             throw new ServiceJdbcException(e.getMessage(), e.getCause());
         }

@@ -10,6 +10,6 @@ public interface UserService {
     List<User> findAllWhereUsers(String filter, String data);
     User findByIdUser(Long id);
     Optional<User> findByUsername(String username, String password);
-    void saveUser(User product);
+    Long saveUser(User product);
     void deleteUser(Long id);
 }
