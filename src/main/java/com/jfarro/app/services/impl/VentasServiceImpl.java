@@ -22,73 +22,73 @@ public class VentasServiceImpl implements VentasService {
     private VentasDetRepository ventasDetRepository;
 
     @Override
-    public List<VentasDet> findAllVentasDet() throws SQLException {
+    public List<VentasDet> findAllVentasDet() {
         try {
             return this.ventasDetRepository.findAll();
-        } catch (ServiceJdbcException ex) {
+        } catch (SQLException ex) {
             throw new ServiceJdbcException(ex.getMessage(), ex.getCause());
         }
     }
 
     @Override
-    public VentasDet findByIdVentasDet(Long id) throws SQLException {
+    public VentasDet findByIdVentasDet(Long id) {
         try {
             return this.ventasDetRepository.findById(id);
-        } catch (ServiceJdbcException ex) {
+        } catch (SQLException ex) {
             throw new ServiceJdbcException(ex.getMessage(), ex.getCause());
         }
     }
 
     @Override
-    public Long saveVentasDet(VentasDet t) throws SQLException {
+    public Long saveVentasDet(VentasDet t) {
         try {
             return this.ventasDetRepository.save(t);
-        } catch (ServiceJdbcException ex) {
+        } catch (SQLException ex) {
             throw new ServiceJdbcException(ex.getMessage(), ex.getCause());
         }
     }
 
     @Override
-    public void deleteVentasDet(Long id) throws SQLException {
+    public void deleteVentasDet(Long id) {
         try {
             this.ventasDetRepository.delete(id);
-        } catch (ServiceJdbcException ex) {
+        } catch (SQLException ex) {
             throw new ServiceJdbcException(ex.getMessage(), ex.getCause());
         }
     }
 
     @Override
-    public List<VentasCab> findAllVentasCab() throws SQLException {
+    public List<VentasCab> findAllVentasCab() {
         try {
             return this.ventasCabRepository.findAll();
-        } catch (ServiceJdbcException ex) {
+        } catch (SQLException ex) {
             throw new ServiceJdbcException(ex.getMessage(), ex.getCause());
         }
     }
 
     @Override
-    public VentasCab findByIdVentasCab(Long id) throws SQLException {
+    public VentasCab findByIdVentasCab(Long id) {
         try {
             return this.ventasCabRepository.findById(id);
-        } catch (ServiceJdbcException ex) {
+        } catch (SQLException ex) {
             throw new ServiceJdbcException(ex.getMessage(), ex.getCause());
         }
     }
 
     @Override
-    public Long saveVentasCab(VentasCab t) throws SQLException {
+    public Long saveVentasCab(VentasCab t) {
         try {
             return this.ventasCabRepository.save(t);
-        } catch (ServiceJdbcException ex) {
+        } catch (SQLException ex) {
             throw new ServiceJdbcException(ex.getMessage(), ex.getCause());
         }
     }
 
     @Override
-    public void deleteVentasCab(Long id) throws SQLException {
+    public void deleteVentasCab(Long id) {
         try {
             this.ventasCabRepository.delete(id);
-        } catch (ServiceJdbcException ex) {
+        } catch (SQLException ex) {
             throw new ServiceJdbcException(ex.getMessage(), ex.getCause());
         }
     }

@@ -10,6 +10,7 @@ public interface ProductService {
     Product findByIdProduct(Long id);
     Long saveProduct(Product product);
     void deleteProduct(Long id);
+    void updateAmountProduct(Long idProduct, int amount);
 
     List<ProductCategory> findAllCategory();
     ProductCategory findByIdCategory(Long id);

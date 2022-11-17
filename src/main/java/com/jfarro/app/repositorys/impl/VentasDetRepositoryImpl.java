@@ -1,5 +1,6 @@
 package com.jfarro.app.repositorys.impl;
 
+import com.jfarro.app.annotations.ConnectionMySQL;
 import com.jfarro.app.annotations.Repository;
 import com.jfarro.app.models.Product;
 import com.jfarro.app.models.VentasCab;
@@ -15,6 +16,7 @@ import java.util.List;
 public class VentasDetRepositoryImpl implements VentasDetRepository {
 
     @Inject
+    @ConnectionMySQL
     private Connection conn;
 
     @Override

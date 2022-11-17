@@ -29,6 +29,11 @@ public class ProductsServletShow extends HttpServlet {
             req.setAttribute("errorDelete", "Debe seleccionar el producto que desea eliminar.");
             req.getSession().removeAttribute("sessionError");
         }
+        //-------------------- Ventas --------------------
+        if (req.getSession().getAttribute("ventaFinish") != null) {
+            req.setAttribute("ventaFinish", req.getSession().getAttribute("ventaFinish"));
+            req.getSession().removeAttribute("ventaFinish");
+        }
         getServletContext().getRequestDispatcher("/products.jsp").forward(req, resp);
     }
 }

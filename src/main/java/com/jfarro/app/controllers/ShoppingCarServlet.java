@@ -64,14 +64,18 @@ public class ShoppingCarServlet extends HttpServlet {
             if (items.contains(itemCar)) { //Compara por el id del item
                 this.shoppingCarService.updateAmountItemShoppingCar(itemCar.getAmount() + 1, itemCar.getId());
             } else {
-                long idItem = this.shoppingCarService.saveItemShoppingCar(item);
-                ShoppingCar shoppingCar = new ShoppingCar();
-                User user = new User();
-                user.setId(idUser);
-                shoppingCar.setUser(user);
-                item.setId(idItem);
-                shoppingCar.setItemCar(item);
-                this.shoppingCarService.saveShoppingCar(shoppingCar);
+                Long idItem = this.shoppingCarService.saveItemShoppingCar(item);
+                if (idItem != null && idItem > 0) {
+                    ShoppingCar shoppingCar = new ShoppingCar();
+                    User user = new User();
+                    user.setId(idUser);
+                    shoppingCar.setUser(user);
+                    item.setId(idItem);
+                    shoppingCar.setItemCar(item);
+                    this.shoppingCarService.saveShoppingCar(shoppingCar);
+                } else {
+                    resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error al guardar el carrito, vuelva a intentarlo más tarde.");
+                }
             }
         }
         resp.sendRedirect(req.getContextPath() + "/carro-compra");

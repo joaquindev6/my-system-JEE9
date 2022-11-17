@@ -7,13 +7,13 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface VentasService {
-    List<VentasDet> findAllVentasDet() throws SQLException;
-    VentasDet findByIdVentasDet(Long id) throws SQLException;
-    Long saveVentasDet(VentasDet t) throws SQLException;
-    void deleteVentasDet(Long id) throws SQLException;
+    List<VentasDet> findAllVentasDet();
+    VentasDet findByIdVentasDet(Long id);
+    Long saveVentasDet(VentasDet t);
+    void deleteVentasDet(Long id);
 
-    List<VentasCab> findAllVentasCab() throws SQLException;
-    VentasCab findByIdVentasCab(Long id) throws SQLException;
-    Long saveVentasCab(VentasCab t) throws SQLException;
-    void deleteVentasCab(Long id) throws SQLException;
+    List<VentasCab> findAllVentasCab();
+    VentasCab findByIdVentasCab(Long id);
+    Long saveVentasCab(VentasCab t);
+    void deleteVentasCab(Long id);
 }

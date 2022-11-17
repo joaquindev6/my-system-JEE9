@@ -56,7 +56,7 @@ public class VentasCabRepositoryImpl implements VentasCabRepository {
         }
         try (PreparedStatement pstm = this.conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             pstm.setLong(1, ventasCab.getUser().getId());
-            pstm.setDate(2, Date.valueOf(ventasCab.getDate()));
+            pstm.setString(2, ventasCab.getDateTime());
             pstm.setDouble(3, ventasCab.getPriceTotal());
             if (ventasCab.getId() != null && ventasCab.getId() > 0) {
                 pstm.setLong(4, ventasCab.getId());
@@ -81,7 +81,7 @@ public class VentasCabRepositoryImpl implements VentasCabRepository {
     private VentasCab getVentasCab(ResultSet rs) throws SQLException {
         VentasCab ventas = new VentasCab();
         ventas.setId(rs.getLong("id"));
-        ventas.setDate(rs.getDate("fecha").toLocalDate());
+        ventas.setDateTime(rs.getString("fecha"));
         ventas.setPriceTotal(rs.getDouble("prectotal"));
 
         User user = new User();

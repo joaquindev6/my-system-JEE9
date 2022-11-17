@@ -75,6 +75,11 @@
         </div>
     </nav>
     <div class="container">
+        <% if (request.getAttribute("sinDatosItems") != null) { %>
+        <div class="alert alert-danger mt-4" role="alert">
+            <%= request.getAttribute("sinDatosItems") %>
+        </div>
+        <% } %>
         <div class="row mt-4">
             <div class="col">
                 <h3>Mi carrito (<%= items != null ? items.size() : 0 %> items)</h3>
@@ -121,46 +126,50 @@
             </div>
             <div class="col-md-9 col-lg-4 col-xl-4 mt-3">
                 <div class="card">
-                    <div class="card-body">
-                        <div class="row mb-2">
-                            <div class="col">
-                                <h3 class="card-title">Resumen del pedido</h3>
+                    <form id="formShoppingCar" action="<%=request.getContextPath()%>/productos/ventas" method="post">
+                        <div class="card-body">
+                            <div class="row mb-2">
+                                <div class="col">
+                                    <h3 class="card-title">Resumen del pedido</h3>
+                                </div>
                             </div>
+                            <div class="row me-2 ms-2">
+                                <div class="col">
+                                    <h6 class="card-subtitle mb-2 text-muted">Precio:</h6>
+                                </div>
+                                <div class="col text-end">
+                                    <h6 class="card-subtitle mb-2 text-muted">S/ <%= itemData.calSubTotal() %></h6>
+                                </div>
+                            </div>
+                            <div class="row me-2 ms-2">
+                                <div class="col">
+                                    <h6 class="card-subtitle mb-2 text-muted">Descuentos:</h6>
+                                </div>
+                                <div class="col text-end">
+                                    <h6 class="card-subtitle mb-2 text-muted">S/ 0</h6>
+                                </div>
+                            </div>
+                            <div class="row mt-3 mb-2">
+                                <div class="col">
+                                    <h4 class="card-title">Subtotal: </h4>
+                                </div>
+                                <div class="col text-end">
+                                    <h4 class="card-title">S/ <%= itemData.calSubTotal() %></h4>
+                                </div>
+                            </div>
+                                <div class="d-grid gap-2 col-12 mx-auto">
+                                    <input class="btn btn-primary p-3" type="submit" value="Finalizar compra"/>
+                                    <a class="btn btn-secondary p-3" type="button" href="<%=request.getContextPath()%>/productos/data-show">Continuar comprando</a>
+                                </div>
                         </div>
-                        <div class="row me-2 ms-2">
-                            <div class="col">
-                                <h6 class="card-subtitle mb-2 text-muted">Precio:</h6>
-                            </div>
-                            <div class="col text-end">
-                                <h6 class="card-subtitle mb-2 text-muted">S/ <%= itemData.calSubTotal() %></h6>
-                            </div>
-                        </div>
-                        <div class="row me-2 ms-2">
-                            <div class="col">
-                                <h6 class="card-subtitle mb-2 text-muted">Descuentos:</h6>
-                            </div>
-                            <div class="col text-end">
-                                <h6 class="card-subtitle mb-2 text-muted">S/ 0</h6>
-                            </div>
-                        </div>
-                        <div class="row mt-3 mb-2">
-                            <div class="col">
-                                <h4 class="card-title">Subtotal: </h4>
-                            </div>
-                            <div class="col text-end">
-                                <h4 class="card-title">S/ <%= itemData.calSubTotal() %></h4>
-                            </div>
-                        </div>
-                        <div class="d-grid gap-2 col-12 mx-auto">
-                            <button class="btn btn-primary p-3" type="button">Finalizar compra</button>
-                            <a class="btn btn-secondary p-3" type="button" href="<%=request.getContextPath()%>/productos/data-show">Continuar comprando</a>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
     <script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="https://kit.fontawesome.com/82ec21a6d1.js" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11" type="text/javascript"></script>
+    <script src="<%=request.getContextPath()%>/funciones_js/ShoppingCarSweetAlert.js" type="text/javascript"></script>
 </body>
 </html>

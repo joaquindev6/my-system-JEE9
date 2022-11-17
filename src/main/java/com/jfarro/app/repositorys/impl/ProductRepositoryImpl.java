@@ -77,6 +77,15 @@ public class ProductRepositoryImpl implements ProductRepository {
         }
     }
 
+    @Override
+    public void UpdateAmountProduct(Long idProduct, int amount) throws SQLException {
+        try (PreparedStatement pstm = this.conn.prepareStatement("UPDATE products SET amount = ? WHERE id = ?")) {
+            pstm.setInt(1, amount);
+            pstm.setLong(2, idProduct);
+            pstm.executeUpdate();
+        }
+    }
+
     private Product getProduct(ResultSet rs) throws SQLException {
         Product product = new Product();
         product.setId(rs.getLong("id"));

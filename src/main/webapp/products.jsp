@@ -79,6 +79,11 @@
             <%= request.getAttribute("errorDelete") %>
         </div>
         <% } %>
+        <% if (request.getAttribute("ventaFinish") != null) { %>
+        <div class="alert alert-success mt-4" role="alert">
+            <%= request.getAttribute("ventaFinish") %>
+        </div>
+        <% } %>
         <div class="card mt-4 shadow">
             <div class="card-header">
                 <h4>Lista de Productos</h4>

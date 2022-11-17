@@ -58,6 +58,15 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public void updateAmountProduct(Long idProduct, int amount) {
+        try {
+            this.productRepository.UpdateAmountProduct(idProduct, amount);
+        } catch (SQLException e) {
+            throw new ServiceJdbcException(e.getMessage(), e.getCause());
+        }
+    }
+
+    @Override
     public List<ProductCategory> findAllCategory() {
         try {
             return this.categoryRepository.findAll();

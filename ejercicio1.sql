@@ -77,6 +77,8 @@ prectotal DECIMAL(12,2) NOT NULL,
 FOREIGN KEY(id_usuario) REFERENCES users(id)
 );
 
+SELECT * FROM tbl_ventas_cab;
+
 CREATE TABLE tbl_ventas_det(
 id_venta_cab INT NOT NULL,
 id_producto INT NOT NULL,
@@ -85,6 +87,10 @@ precio DECIMAL(12,2) NOT NULL,
 FOREIGN KEY(id_venta_cab) REFERENCES tbl_ventas_cab(id),
 FOREIGN KEY(id_producto) REFERENCES products(id)
 );
+
+SELECT * FROM tbl_ventas_det;
+
+DELETE FROM tbl_ventas_det WHERE id_venta_cab = 8;
 
 
 

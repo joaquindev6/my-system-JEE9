@@ -1,12 +1,12 @@
 package com.jfarro.app.models;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class VentasCab {
 
     private Long id;
     private User user;
-    private LocalDate date;
+    private String dateTime;
     private double priceTotal;
 
     public Long getId() {
@@ -25,12 +25,12 @@ public class VentasCab {
         this.user = user;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public String getDateTime() {
+        return dateTime;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setDateTime(String dateTime) {
+        this.dateTime = dateTime;
     }
 
     public double getPriceTotal() {

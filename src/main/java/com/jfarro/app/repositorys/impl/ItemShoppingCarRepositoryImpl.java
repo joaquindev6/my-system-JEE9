@@ -23,7 +23,7 @@ public class ItemShoppingCarRepositoryImpl implements ItemShoppingCarRepository 
     public List<ItemShoppingCar> findAll() throws SQLException {
         List<ItemShoppingCar> items = new ArrayList<>();
         try (Statement stm = this.conn.createStatement()) {
-            try (ResultSet rs = stm.executeQuery("SELECT i.*, p.name, p.price, p.id_category, c.name FROM item_shopping_car AS i " +
+            try (ResultSet rs = stm.executeQuery("SELECT i.*, p.name, p.price, p.amount, p.id_category, c.name FROM item_shopping_car AS i " +
                     "INNER JOIN products AS p ON i.id_product = p.id " +
                     "INNER JOIN product_category AS c ON p.id_category = c.id")) {
                 items.add(getItemShoppingCar(rs));
@@ -35,7 +35,7 @@ public class ItemShoppingCarRepositoryImpl implements ItemShoppingCarRepository 
     @Override
     public ItemShoppingCar findById(Long id) throws SQLException {
         ItemShoppingCar itemShoppingCar = new ItemShoppingCar(null);
-        try (PreparedStatement pstm = this.conn.prepareStatement("SELECT i.*, p.name, p.price, p.id_category, c.name FROM item_shopping_car AS i " +
+        try (PreparedStatement pstm = this.conn.prepareStatement("SELECT i.*, p.name, p.price, p.amount, p.id_category, c.name FROM item_shopping_car AS i " +
                 "INNER JOIN products AS p ON i.id_product = p.id " +
                 "INNER JOIN product_category AS c ON p.id_category = c.id WHERE i.id = ?")) {
             pstm.setLong(1, id);
@@ -112,6 +112,7 @@ public class ItemShoppingCarRepositoryImpl implements ItemShoppingCarRepository 
         product.setId(rs.getLong("id_product"));
         product.setName(rs.getString("p.name"));
         product.setPrice(rs.getDouble("p.price"));
+        product.setAmount(rs.getInt("p.amount"));
         ProductCategory category = new ProductCategory();
         category.setId(rs.getLong("p.id_category"));
         category.setName(rs.getString("c.name"));
